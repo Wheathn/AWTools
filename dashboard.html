@@ -1,0 +1,2639 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+
+    <title>GhostShip Tracker</title>
+
+  
+    <style>
+      
+        /* Style for the container holding the images */
+        .image-container {
+          position: absolute;
+          top: 330px;
+          left: 50%; /* Move the left edge to the horizontal center */
+          transform: translate(-50%, 0%); /* Center the element */
+          width: 1030px;
+          height: 860px;
+          border: 1px solid black;
+          padding: 20px;
+          background-color: #444;
+        }
+
+        /* Style for the large image */
+        .large-image {
+            position: absolute;
+            top: 100px;
+            left: 10px;
+            width: 800px;
+            max-width: 800px; /* You can adjust the size as needed */
+            display: block;
+        }
+
+        /* Style for the smaller images */
+        .small-image {
+            position: absolute;
+            cursor: pointer;
+            width: 10px;
+            max-width: 10px; /* You can adjust the size as needed */
+            display: block;
+        }
+
+        /* Define the positions for the smaller images */
+        .small-image1 {
+            top: 528px;
+            left: 336px;
+            z-index: 2;
+        }
+
+        .small-image2 {
+            top: 476px;
+            left: 102px;
+            z-index: 2;
+        }
+
+        .small-image3 {
+            top: 433px;
+            left: 198px;
+            z-index: 2;
+        }
+
+        .small-image4 {
+            top: 250px;
+            left: 307px;
+            z-index: 2;
+        }
+
+        .small-image5 {
+            top: 512px;
+            left: 625px;
+            z-index: 2;
+        }
+
+        .small-image6 {
+            top: 278px;
+            left: 618px;
+            z-index: 2;
+        }
+
+        .small-image7 {
+            top: 312px;
+            left: 436px;
+            z-index: 2;
+        }
+
+        /* Styles for the timers */
+        .timer1 {
+            position: absolute;
+            width: 100px;
+            top: 498px;
+            left: 348px;
+            z-index: 1; /* Place the timers on top of the large image */
+        }
+
+        .timer2 {
+            position: absolute;
+            width: 100px;
+            top: 444px;
+            left: 112px;
+            z-index: 1;
+        }
+
+        .timer3 {
+            position: absolute;
+            width: 100px;
+            top: 398px;
+            left: 202px;
+            z-index: 1;
+        }
+
+        .timer4 {
+            position: absolute;
+            width: 100px;
+            top: 218px;
+            left: 313px;
+            z-index: 1;
+        }
+
+        .timer5 {
+            position: absolute;
+            width: 100px;
+            top: 478px;
+            left: 634px;
+            z-index: 1;
+        }
+
+        .timer6 {
+            position: absolute;
+            width: 100px;
+            top: 245px;
+            left: 622px;
+            z-index: 1;
+        }
+
+        .timer7 {
+            position: absolute;
+            width: 100px;
+            top: 280px;
+            left: 442px;
+            z-index: 1;
+        }
+
+        /* Styles for the info box */
+        .info-box {
+            position: absolute;
+            margin-top: 80px;
+            margin-left: 800px;
+            width: 240px;
+            background-color: rgb(60 60 60);
+            z-index: 1; /* Place the info box on top of the large image */
+        }
+      .info-content{
+        padding: 12px;
+      }
+
+      .user-info {
+          display: flex;
+          align-items: left;
+          justify-content: space-between;
+          padding: 10px 12px; /* Adjust the vertical and horizontal padding values */
+          background-color: rgb(40, 40, 40);
+          border-radius: 10px; /* Adjust the border-radius to control the roundness */
+      }
+
+      .avatar-container {
+          display: flex;
+          align-items: center;
+      }
+
+      .avatar {
+          margin-right: 0px; /* Adjust the margin as needed */
+      }
+
+      #discordicon {
+          margin-right: 10px; /* Add margin for the gap */
+      }
+
+      .user-details {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin-right: 18px;
+      }
+
+
+      /* CSS for the user name */
+      #name {
+          color: white; /* Set the text color to white */
+          font-weight: bold; /* Make the text bold */
+      }
+
+      /* CSS for the Logout link */
+      .text-sm {
+          color: white; /* Set the text color to white */
+      }
+      .hiddenbtns {
+          display: none;
+      }
+      #chat-box {
+          border: 3px solid #ccc;
+          height: 120px; /* Adjust the height as needed */
+          overflow-y: scroll; /* Enable vertical scrollbar when content overflows */
+          padding: 10px;
+          background-color: #555;
+          position: absolute;
+          margin-left: 3px;
+          margin-top: 725px;
+          width: 756px;
+        color: white; 
+        font-family: Arial, sans-serif; 
+        font-size: 14px;
+      }
+
+      #container {
+        position: relative;
+        left: 50%; /* Move the left edge to the horizontal center */
+        transform: translate(-50%, 0%); /* Center the element */
+        top: 30px;
+        height: 190px;
+        width: 700px;
+        border: 1px solid black;
+        padding: 20px;
+        background-color: #444;
+      }
+      #container2 {
+        position: relative;
+        left: 50%; /* Move the left edge to the horizontal center */
+        transform: translate(-50%, 0%); /* Center the element */
+        top: 960px;
+        height: 160px;
+        width: 700px;
+        border: 1px solid black;
+        padding: 20px;
+        background-color: #444;
+      }     
+      #container3 {
+        position: relative;
+        left: 50%; /* Move the left edge to the horizontal center */
+        transform: translate(-50%, 0%); /* Center the element */
+        top: 975px;
+        height: 290px;
+        width: 700px;
+        border: 1px solid black;
+        padding: 20px;
+        background-color: #444;
+      }
+      #container4 {
+        position: relative;
+        left: 50%; /* Move the left edge to the horizontal center */
+        transform: translate(-50%, 0%); /* Center the element */
+        top: 1000px;
+        height: 605px;
+        width: 840px;
+        border: 1px solid black;
+        padding: 20px;
+        background-color: #444;
+      }
+      #container5 {
+        position: relative;
+        left: 50%; /* Move the left edge to the horizontal center */
+        transform: translate(-50%, 0%); /* Center the element */
+        top: 1000px;
+        height: 200px;
+        width: 850px;
+        padding: 20px;
+      }
+
+      h1 {
+        color: white;
+      }
+
+      label {
+        color: white;
+      }
+
+      #dropdown {
+        display: block;
+      }
+
+      input[type="checkbox"] {
+        transform: scale(1.5);
+      }
+
+      input[type="number"] {
+        width: 50px;
+      }
+
+      button {
+        background-color: #738adb;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 20px; 
+      }
+
+      #BAShopResult {
+        color: white;
+        font-size: 22px;
+      }
+
+      
+      .navbar {
+        background-color: #444; /* Background color of the navigation bar */
+        color: #fff; /* Text color */
+        padding: 10px 0;
+      }
+
+      .navContainer {
+        max-width: 900px; /* Set a maximum width for the content */
+        margin: 0 auto; /* Center the content horizontally */
+        display: flex;
+        justify-content: space-between; /* Spread elements horizontally */
+        align-items: center;
+      }
+
+      .header {
+        /* Styles for the left header */
+        color: #fff;
+        font-size: 24px;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: flex-end; /* Align navigation items to the right */
+      }
+
+      nav ul li {
+        margin-right: 20px; /* Add space between navigation items */
+      }
+
+      nav ul li:last-child {
+        margin-right: 0; /* Remove margin from the last item */
+      }
+
+      nav a {
+        text-decoration: none; /* Remove underlines from links */
+        color: #fff; /* Text color for links */
+      }
+
+      #skillForm {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 25px;
+          width: 850px;
+      }
+
+      .column {
+          display: flex;
+          flex-direction: column;
+      }
+
+      .skillRow {
+          display: flex;
+          flex-wrap: wrap;
+          position: relative;
+          top: 30px;
+          left: 5px;
+          margin-bottom: 30px;
+      }
+
+      .skillItem {
+          top: 0px;
+          width: 65px;
+          position: relative;
+          margin-bottom: 5px;
+      }
+      .passiveItem {
+          top:0px;
+          width: 65px;
+          position: relative;
+          margin-bottom: 5px;
+      }
+
+      .skillImage {
+          width: 60px;
+          height: auto;
+          filter: brightness(30%); /* Darken the image by % */
+          cursor: pointer; /* Add cursor pointer for better UX */
+          transition: filter 0.3s; /* Add transition for a smoother effect */
+      }
+      .skillImagePassive {
+          position: relative;
+          top: 0px;
+          width: 60px;
+          height: auto;
+          filter: brightness(30%); /* Darken the image by % */
+          transition: filter 0.3s; /* Add transition for a smoother effect */
+          padding: 1px 2px;
+      }
+      .skillImagePassive.active {
+          filter: brightness(100%); /* Fully light up the image when selected */
+      }
+
+      .skillImage.selected {
+          filter: brightness(100%); /* Fully light up the image when selected */
+          }
+
+      /* Style for the skill count display */
+      .skillCount {
+          position: relative;
+          top: -10px;
+          left: 120px;
+          background-color: #fff;
+          padding: 2px 5px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          font-size: 12px;
+          width: 20px;
+      }
+      .numberOverlay {
+          position: absolute;
+          top: 5px;
+          left: 20px;
+          color: white;
+          font-size: 40px;
+          pointer-events: none; /* This ensures that the numberOverlay does not interfere with the click event on the skillImage */
+      }
+      .tooltip {
+          position: absolute;
+          background-color: #f9f9f9;
+          border: 1px solid #ccc;
+          padding: 5px;
+          z-index: 9999;
+      }
+    </style>
+
+
+  
+<header class="navbar">
+  <div class="navContainer">
+    <div class="header">ArcheWorld Tools</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>  
+        <li><a href="https://discord.com/users/206969028822958090">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  
+
+  
+  <body style="background-color: #333;"> <!-- Dark gray background -->
+
+    <div class="image-container">
+      <div style="position: absolute; left: 400px; top: 0px; color:white;">
+      <h1 style="width: 350px;">Ghost Ship Tracker</h1>
+      </div>
+        <img src="map.png" alt="Large Image" class="large-image">
+      
+        <div class="small-image small-image1">
+            <img id="image1" src="flag.png" alt="Small Image 1" onclick=" changeImage('image1'); updateSelectedLocation('Solis'); updateInfoText('Solis'); ">
+        </div>
+        <!-- Add small images 2 through 6 similarly -->
+        <div class="small-image small-image2">
+            <img id="image2" src="flag.png" alt="Small Image 2" onclick=" changeImage('image2'); updateSelectedLocation('CinderS'); updateInfoText('Cinderstone South'); ">
+        </div>
+        <div class="small-image small-image3">
+            <img id="image3" src="flag.png" alt="Small Image 3" onclick=" changeImage('image3'); updateSelectedLocation('CinderSE'); updateInfoText('Cinderstone SouthEast'); ">
+        </div>
+        <div class="small-image small-image4">
+            <img id="image4" src="flag.png" alt="Small Image 4" onclick=" changeImage('image4'); updateSelectedLocation('CinderN'); updateInfoText('Cinderstone North'); ">
+        </div>
+        <div class="small-image small-image5">
+            <img id="image5" src="flag.png" alt="Small Image 5" onclick=" changeImage('image5'); updateSelectedLocation('Maha'); updateInfoText('Mahadevi'); ">
+        </div>
+        <div class="small-image small-image6">
+            <img id="image6" src="flag.png" alt="Small Image 6" onclick=" changeImage('image6'); updateSelectedLocation('Yny'); updateInfoText('Ynystere'); ">
+        </div>
+        <div class="small-image small-image7">
+            <img id="image7" src="flag.png" alt="Small Image 7" onclick=" changeImage('image7'); updateSelectedLocation('Island'); updateInfoText('Island'); ">
+        </div>
+        <div class="timer1" id="timer1">
+            <p id="Solis_timer">Uknown</p>
+        </div>
+        <!-- Add timers for small images 2 through 6 similarly -->
+        <div class="timer2" id="timer2">
+            <p id="CinderS_timer">Unknown</p>
+        </div>
+        <div class="timer3" id="timer3">
+            <p id="CinderSE_timer">Unknown</p>
+        </div>
+        <div class="timer4" id="timer4">
+            <p id="CinderN_timer">Unknown</p>
+        </div>
+        <div class="timer5" id="timer5">
+            <p id="Maha_timer">Unknown</p>
+        </div>
+        <div class="timer6" id="timer6">
+            <p id="Yny_timer">Unknown</p>
+        </div>
+        <div class="timer7" id="timer7">
+            <p id="Island_timer">Unknown</p>
+        </div>
+
+        <!-- Add other small images and buttons similarly -->
+
+    <div class="info-box">
+      <div class="info-content">
+        <select id="guildDropdown">
+          <!-- User-created guilds will be added dynamically here -->
+        </select>
+        <br>
+        <select id="membersDropdown"></select>
+        <br>
+        
+        <button id="createGuildBtn" style="display: none;" onclick="createGuild()">Create New</button>
+        <button id="addMemberBtn" onclick="addMember()">Add Member</button>
+        <button id="removeMemberBtn" onclick="removeMember()">Remove Member</button>
+
+        <h2 id="image-title" style="color: white;">Select a Spawn</h2>
+        <p id="image-description" style="color: white;"> </p>
+        <p id="DGStext" style="color: white;"> </p>
+
+      <form id="countForm">
+          <input type="number" style="max-width: 35px;" id="gsCountINPUT" name="gsCountINPUT" placeholder="#">
+          <button type="button" onclick="handleGsCountModification()">Update GS Count</button>
+      </form>
+      
+        <p id="Krakentext" style="color: white;"> 
+          
+          <form id="packsForm">
+              <input type="number" style="max-width: 35px;" id="packsINPUT" name="packsINPUT" placeholder="#">
+              <button type="button" onclick="handlePacksModification()">Update Packs</button>
+          </form>
+        
+        </p><button id="btn_Kill" onclick="killedGS()">+Killed</button>
+      <br>
+      
+      <br>
+      <form id="timeForm">
+        <input type="number" style="max-width: 45px;" id="hours" name="hours" placeholder="hrs">
+        <input type="number" style="max-width: 45px;"id="minutes" name="minutes" placeholder="mins">
+        <button type="button" onclick="handleTimeModification()">Edit  Time</button>
+      </form>
+      <br>
+      
+      <br>
+      </div>
+      <br>
+            <p style="color:white;">*auto-refreshes every 15min</p>
+
+      <div class="user-info">
+          <div class="avatar-container">
+              <img src="/discordIcon.png" id="discordicon" class="rounded-full w-12 h-12" width="50" height="50" />
+              <img src="" id="avatar" class="rounded-full w-12 h-12" width="50" height="50" />
+          </div>
+          <div class="user-details">
+              <div id="name" class="text-4xl font-medium"></div>
+              <a href="/" class="text-sm">Logout</a>
+          </div>
+      </div>
+    </div>
+        <div id="chat-box">
+
+      <!-- Messages will be displayed here -->
+    </div>
+  </div>
+
+    <div id="container">
+      <div style="position: absolute; left: 75px; top: 0px;">
+        <h1>Mystical Blue Archeum Shop Calculator</h1>
+      </div>
+      <div style="position: absolute; left: 242px; top: 74px;">
+        <form>
+          <label for="dropdown">Select Item:</label>
+          <select id="dropdown" name="options">
+            <option value="110">Incomplete Archeum Shard: 1,000</option>
+            <option value="560">Incomplete Archeum Shard: 5,000</option>
+            <option value="230">Shatigon's Ore: 10</option>
+            <option value="900">Well-Incubated Lumia Egg</option>
+            <option value="690">50-Gold Coin Pouch</option>
+            <option value="210">Grand Expansion Scroll</option>
+            <option value="3100">Rare Expansion Scroll</option>
+            <option value="100">Moonlight Armor Enhance Stone</option>
+            <option value="120">Starlight Accessory Enhance Stone</option>
+            <option value="230">Sunlight Weapon Enhance Stone</option>
+            <option value="2700">Ship Equipment Enhance Scroll</option>
+            <option value="1500">Moonlight Protection Stone</option>
+            <option value="2000">Starlight Protection Stone</option>
+            <option value="3000">Sunlight Protection Stone</option>
+            <option value="5500">Kadum's Bark: 10</option>
+            <option value="1050">Arcane Infusion Extract Chest</option>
+            <option value="100">Arcane Infusion Extract</option>
+            <option value="36000">Ancestral Token: Rank 1</option>
+            <option value="156600">Ancestral Token: Rank 2</option>
+            <option value="171500">Arcane Glider Box</option>
+            <option value="50000">Artisan's Awakening Scroll</option>
+            <option value="400000">Conqueror's Awakening Scroll</option>
+            <option value="193800">Rare Mount Awakening Scroll</option>
+            <option value="132000">Rare Furniture</option>
+            <option value="205000">Arcane Furniture</option>
+            <option value="400800">Heroic Furniture</option>
+          </select>
+        </form>
+      </div>
+
+      <div style="position: absolute; left: 60px; top: 126px; width: 150px;">
+        <form>
+          <label for="discountedCheck">Discounted?</label>
+          <input type="checkbox" id="discountedCheck" name="discountedCheck" value="yes">
+        </form>
+      </div>
+
+      <div style="position: absolute; left: 180px; top: 126px; width: 180px;">
+        <form>
+          <label for="BAPriceCheck">Use Sell Crate Price?</label>
+          <input type="checkbox" id="BAPriceCheck" name="BAPriceCheck" value="yes" checked>
+        </form>
+      </div>
+
+      <div style="position: absolute; left: 350px; top: 126px;">
+        <form>
+          <input type="number" id="BAPrice" name="BAPrice" value="55" style="width: 30px;">
+        </form>
+      </div>
+
+      <div style="position: absolute; left: 395px; top: 126px; width: 180px;">
+        <form>
+          <label for="itemSellCheck">Selling the item?</label>
+          <input type="checkbox" id="itemSellCheck" name="itemSellCheck" value="yes" checked>
+        </form>
+      </div>
+
+      <div style="position: absolute; left: 545px; top: 126px;">
+        <form>
+          <label for="ItemAHPrice">Item AH Price</label>
+          <input type="number" id="ItemAHPrice" name="ItemAHPrice" style="width: 60px;">
+        </form>
+      </div>
+
+      <div style="position: absolute; left: 250px; top: 179px;">
+        <button id="btn_CalculateBAShop" onclick="calculateBAShop()">Calculate</button>
+      </div>
+
+      <div style="position: absolute; left: 390px; top: 163px;">
+        <p id="BAShopResult">= %</p>
+      </div>
+    </div>
+
+    <div id="container2">
+      <div style="position: absolute; left: 175px; top: 0px;">
+        <h1>Dungeon Sweep Calculator</h1>
+      </div>
+
+      
+      <div style="position: absolute; left: 100px; top: 76px;">
+        <form>
+          <input type="number" id="moonpointPrice" name="MoPs" value="0.005" style="width: 50px;">
+          <label for="moonpointPrice">Moonpoint Fragments</label>
+        </form>
+        <form>
+          <input type="number" id="starpointPrice" name="StPs" value="0.045" style="width: 50px;">
+          <label for="starpointPrice">Starpoint Fragments</label>
+        </form>
+        <form>
+          <input type="number" id="sunpointPrice" name="SnPs" value="0.025" style="width: 50px;">
+          <label for="sunpointPrice">Sunpoint Fragments</label>
+        </form>
+      </div>
+
+      <div style="position: absolute; left: 320px; top: 76px;">
+        <form>
+          <input type="number" id="archeumPrice" name="arch" value="48" style="width: 40px;">
+          <label for="archeumPrice">10k Archeum</label>
+        </form>
+      </div>
+
+      <div style="position: absolute; left: 460px; top: 76px;">
+        <form>
+          <input type="number" id="archeumIncPrice" name="archInc" value="17" style="width: 40px;">
+          <label for="archeumIncPrice">10k Incomp. Archeum Shards</label>
+        </form>
+      </div>
+
+
+      
+      <div style="position: absolute; left: 40px; top: 150px;">
+        <button id="btn_CalculateSweep" onclick="calculateSweep()">Calculate</button>
+      </div>
+      
+      <div style="position: absolute; left: 160px; top: 150px; color: white; background-color: #555; border: 1px solid black; height: 40px; width: 115px;">
+        <p id="sweepResultBC" style=" margin-top: 12px; margin-left: 4px;">BC:</p>
+      </div>
+      <div style="position: absolute; left: 280px; top: 150px; color: white; background-color: #555; border: 1px solid black; height: 40px; width: 115px;">
+        <p id="sweepResultHA" style=" margin-top: 12px; margin-left: 4px;">HA:</p>
+      </div>
+      <div style="position: absolute; left: 400px; top: 150px; color: white; background-color: #555; border: 1px solid black; height: 40px; width: 115px;">
+        <p id="sweepResultHF" style=" margin-top: 12px; margin-left: 4px;">HF:</p>
+      </div>
+      <div style="position: absolute; left: 520px; top: 150px; color: white; background-color: #555; border: 1px solid black; height: 40px; width: 115px;">
+        <p id="sweepResultKC" style=" margin-top: 12px; margin-left: 4px;">KC:</p>
+      </div>
+
+    </div>
+
+    <div id="container3">
+      
+      <div style="position: absolute; left: 240px; top: 0px;">
+        <h1>Lands Calculator</h1>
+        </div>
+      
+        <div style="position: absolute; left: 30px; top: 85px;">
+            <form>
+                <label for="incompletePriceL">10,000 Incomplete Price:</label>
+                <input type="number" id="incompletePriceL" name="incompletePrice" value="12.5">
+            </form>
+        </div>
+
+        <div style="position: absolute; left: 30px; top: 110px;">
+            <form>
+                <label for="archeumPriceL">10,000 Archeum Price:</label>
+                <input type="number" id="archeumPriceL" name="archeumPriceL" value="40">
+            </form>
+        </div>
+
+        <div style="position: absolute; left: 280px; top: 85px;">
+            <form>
+                <label for="laborPotionPriceL">Labor Potion Price:</label>
+                <input type="number" id="laborPotionPriceL" name="laborPotionPriceL" value="3.7">
+            </form>
+        </div>
+
+        <div style="position: absolute; left: 280px; top: 110px;">
+            <form>
+                <label for="rentalCostL">Rental Cost:</label>
+                <input type="number" id="rentalCostL" name="rentalCostL" value="0">
+            </form>
+        </div>
+
+        <div style="position: absolute; left: 480px; top: 85px;">
+            <form>
+                <label for="sellArcheumCheckbox">Selling Archeum?</label>
+                <input type="checkbox" id="sellArcheumCheckboxL" name="sellArcheumCheckboxL" value="yes" checked>
+            </form>
+        </div>
+
+        <div style="position: absolute; left: 480px; top: 110px;">
+            <form>
+                <label for="sellLaborCheckbox">Selling Labor?</label>
+                <input type="checkbox" id="sellLaborCheckboxL" name="sellLaborCheckboxL" value="yes">
+            </form>
+        </div>
+
+      <div style="position: absolute; left: 60px; top: 155px; color: white;">
+          <table border="1">
+              <tr>
+                  <th style="color: white;">Stations</th>
+                  <th style="color: white;">Number</th>
+                  <th style="color: white;">Beds</th>
+                  <th style="color: white;">Number</th>
+              </tr>
+              <tr>
+                  <td style="color: lightgray">Basic Archeum Processing Station</td>
+                  <td><input type="number" id="basicStation" name="basicStation" value="0"></td>
+                  <td style="color: lightgray;">Basic Bed</td>
+                  <td><input type="number" id="basicBed" name="basicBed" value="0"></td>
+              </tr>
+              <tr>
+                  <td style="color: lightgreen;">Grand Archeum Processing Station</td>
+                  <td><input type="number" id="grandStation" name="grandStation" value="0"></td>
+                  <td style="color: lightgreen;">Grand Bed</td>
+                  <td><input type="number" id="grandBed" name="grandBed" value="0"></td>
+              </tr>
+              <tr>
+                  <td style="color: skyblue;">Rare Archeum Processing Station</td>
+                  <td><input type="number" id="rareStation" name="rareStation" value="0"></td>
+                  <td style="color: skyblue;">Rare Bed</td>
+                  <td><input type="number" id="rareBed" name="rareBed" value="0"></td>
+              </tr>
+              <tr>
+                  <td style="color: violet;">Arcane Archeum Processing Station</td>
+                  <td><input type="number" id="arcaneStation" name="arcaneStation" value="0"></td>
+                  <td style="color: violet;">Arcane Bed</td>
+                  <td><input type="number" id="arcaneBed" name="arcaneBed" value="0"></td>
+              </tr>
+              <tr>
+                  <td style="color: orange;">Heroic Archeum Processing Station</td>
+                  <td><input type="number" id="heroicStation" name="heroicStation" value="0"></td>
+                  <td style="color: orange;">Heroic Bed</td>
+                  <td><input type="number" id="heroicBed" name="heroicBed" value="0"></td>
+              </tr>
+          </table>
+      </div>
+
+
+        <div style="position: absolute; left: 550px; top: 175px; color: white;">
+            <p id="LandsResult"></p>
+        </div>
+
+        <div style="position: absolute; left: 550px; top: 220px;">
+            <button id="btn_CalculateLand" onclick="calculateLands()">Calculate</button>
+        </div>
+
+    </div>
+    
+    <div id="container4">
+    <h1 style="position: relative; left: 50%; width: 218px; transform: translate(-50%, 0%)">Skill Calculator</h1>
+
+    <div id="skillCounter">
+      <h2 style="color: white;"><span id="classChoice">[Invalid Class]</h2>
+        <p style="color: white; margin-bottom: 30px;">Skillpoints: <span id="selectedCount">0</span>/20</p>
+    </div>
+    <form id="skillForm">
+        <div class="column">
+            <label for="tree1"></label>
+            <div class="skillCount" id="tree1Count">0/12</div>
+            <select id="tree1" name="tree1" onchange="updateSkills('tree1')">
+                <!-- Default option that is not selectable -->
+                <option value="" hidden>Select Skill Tree</option>
+                <!-- Options for skill trees -->
+                <option value="Battlerage">Battlerage</option>
+                <option value="Witchcraft">Witchcraft</option>
+                <option value="Defense">Defense</option>
+                <option value="Auramancy">Auramancy</option>
+                <option value="Occultism">Occultism</option>
+                <option value="Archery">Archery</option>
+                <option value="Sorcery">Sorcery</option>
+                <option value="Shadowplay">Shadowplay</option>
+                <option value="Songcraft">Songcraft</option>
+                <option value="Vitalism">Vitalism</option>
+            </select>
+            <div id="tree1Skills" class="column">
+                <!-- Skills for tree 1 will be displayed here dynamically -->
+            </div>
+        </div>
+
+        <div class="column">
+            <label for="tree2"></label>
+            <div class="skillCount" id="tree2Count">0/12</div>
+            <select id="tree2" name="tree2" onchange="updateSkills('tree2')">
+                <!-- Default option that is not selectable -->
+                <option value="" hidden>Select Skill Tree</option>
+                <!-- Options for skill trees -->
+                <option value="Battlerage">Battlerage</option>
+                <option value="Witchcraft">Witchcraft</option>
+                <option value="Defense">Defense</option>
+                <option value="Auramancy">Auramancy</option>
+                <option value="Occultism">Occultism</option>
+                <option value="Archery">Archery</option>
+                <option value="Sorcery">Sorcery</option>
+                <option value="Shadowplay">Shadowplay</option>
+                <option value="Songcraft">Songcraft</option>
+                <option value="Vitalism">Vitalism</option>
+            </select>
+            <div id="tree2Skills" class="column">
+                <!-- Skills for tree 2 will be displayed here dynamically -->
+            </div>
+        </div>
+
+        <div class="column">
+            <label for="tree3"></label>
+            <div class="skillCount" id="tree3Count">0/12</div>
+            <select id="tree3" name="tree3" onchange="updateSkills('tree3')">
+                <!-- Default option that is not selectable -->
+                <option value="" hidden>Select Skill Tree</option>
+                <!-- Options for skill trees -->
+                <option value="Battlerage">Battlerage</option>
+                <option value="Witchcraft">Witchcraft</option>
+                <option value="Defense">Defense</option>
+                <option value="Auramancy">Auramancy</option>
+                <option value="Occultism">Occultism</option>
+                <option value="Archery">Archery</option>
+                <option value="Sorcery">Sorcery</option>
+                <option value="Shadowplay">Shadowplay</option>
+                <option value="Songcraft">Songcraft</option>
+                <option value="Vitalism">Vitalism</option>
+            </select>
+            <div id="tree3Skills" class="column">
+                <!-- Skills for tree 3 will be displayed here dynamically -->
+            </div>
+        </div>
+
+    </form>
+  </div>
+
+    <div id="container5">
+    </div>
+    <script>
+        function calculateLands() {
+//BEDS          
+          // Get input values
+          var basicBed = parseInt(document.getElementById("basicBed").value);
+          var grandBed = parseInt(document.getElementById("grandBed").value);
+          var rareBed = parseInt(document.getElementById("rareBed").value);
+          var arcaneBed = parseInt(document.getElementById("arcaneBed").value);
+          var heroicBed = parseInt(document.getElementById("heroicBed").value);
+
+          var laborPotionPriceL = parseFloat(document.getElementById("laborPotionPriceL").value);
+
+          // Calculate bed multipliers
+          var basicMultiplier = basicBed * 2160;
+          var grandMultiplier = grandBed * 3680;
+          var rareMultiplier = rareBed * 7520;
+          var arcaneMultiplier = arcaneBed * 13000;
+          var heroicMultiplier = heroicBed * 22000;
+          
+
+          let laborPriceToSell = laborPotionPriceL;
+          // Check if "Selling Labor?" checkbox is checked
+          var sellLaborCheckbox = document.getElementById("sellLaborCheckboxL");
+          if (sellLaborCheckbox.checked) {
+              laborPriceToSell = laborPotionPriceL * 0.9;
+            console
+          }
+          else{
+            laborPriceToSell = laborPotionPriceL;
+          }
+          
+          // Calculate labor price
+          var laborPriceProduced = (laborPriceToSell / 1500) * (basicMultiplier + grandMultiplier + rareMultiplier + arcaneMultiplier + heroicMultiplier);
+          
+// PROCESSORS
+              // Get input values
+              var incompletePriceL = parseFloat(document.getElementById("incompletePriceL").value);
+              var archeumPriceL = parseFloat(document.getElementById("archeumPriceL").value);
+              var laborPotionPriceL = parseFloat(document.getElementById("laborPotionPriceL").value);
+
+              var basicStation = parseInt(document.getElementById("basicStation").value);
+              var grandStation = parseInt(document.getElementById("grandStation").value);
+              var rareStation = parseInt(document.getElementById("rareStation").value);
+              var arcaneStation = parseInt(document.getElementById("arcaneStation").value);
+              var heroicStation = parseInt(document.getElementById("heroicStation").value);
+
+            var rentCost = parseInt(document.getElementById("rentalCostL").value) / 28;
+
+
+              // Processing station values
+              var basicMultiplier = 1040;
+              var grandMultiplier = 2020;
+              var rareMultiplier = 4040;
+              var arcaneMultiplier = 8420;
+              var heroicMultiplier = 17600;
+
+          let crateAmount = 10000;
+          let archSellPrice = archeumPriceL;
+          // Check if "Selling Archeum?" checkbox is checked
+          var sellArcheumCheckbox = document.getElementById("sellArcheumCheckboxL");
+          if (sellArcheumCheckbox.checked) {
+            crateAmount = 10500;
+            archSellPrice = archeumPriceL * 0.9;
+          }
+          else{
+            crateAmount = 10000;
+            archSellPrice = archeumPriceL;
+          }
+          
+              // Calculate Step 1
+              var step1 = (incompletePriceL / 10000) * (basicStation * basicMultiplier + grandStation * grandMultiplier + rareStation * rareMultiplier + arcaneStation * arcaneMultiplier + heroicStation * heroicMultiplier);
+
+              // Calculate Step 2
+              var step2 = (archSellPrice / crateAmount) * (basicStation * basicMultiplier + grandStation * grandMultiplier + rareStation * rareMultiplier + arcaneStation * arcaneMultiplier + heroicStation * heroicMultiplier);
+
+              // Calculate Step 3
+              var step3 = (laborPotionPriceL / 1500) * (basicStation * 540 + grandStation * 1080 + rareStation * 2160 + arcaneStation * 4320 + heroicStation * 8640);
+
+
+          
+// RENTAL
+
+
+
+          
+              // Calculate final result
+              var result = step2 - step1 - step3 + laborPriceProduced - rentCost;
+
+              // Display result
+              document.getElementById("LandsResult").innerText =  result.toFixed(2) + " BSLT / 24hr";
+          }
+    </script>
+
+
+
+    
+
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+
+
+    <!--------------------------- Sweep Calculator ------------------------------>
+    <script>
+      function calculateSweep() {
+        // Get input values
+        const moonpointPrice = parseFloat(document.getElementById("moonpointPrice").value);
+        const starpointPrice = parseFloat(document.getElementById("starpointPrice").value);
+        const sunpointPrice = parseFloat(document.getElementById("sunpointPrice").value);
+        const archeumPrice = parseFloat(document.getElementById("archeumPrice").value);
+        const archeumIncPrice = parseFloat(document.getElementById("archeumIncPrice").value);
+
+        // Calculate the sweep results
+        const avgPoints = (moonpointPrice + (starpointPrice/2) + sunpointPrice) / 3;
+        const sweepResult1 = (avgPoints * 47) + ((archeumIncPrice / 10000) * 1773) + ((archeumPrice / 10000) * -1010);
+        const sweepResult2 = (avgPoints * 50) + ((archeumIncPrice / 10000) * 2137) + ((archeumPrice / 10000) * -1227);
+        const sweepResult3 = (avgPoints * 84) + ((archeumIncPrice / 10000) * 3528) + ((archeumPrice / 10000) * -1992);
+        const sweepResult4 = (avgPoints * 99) + ((archeumIncPrice / 10000) * 3927) + ((archeumPrice / 10000) * -2380);
+
+        // Display the results in separate boxes
+        document.getElementById("sweepResultBC").textContent = `BC: ${sweepResult1.toFixed(2)} BSLT`;
+        document.getElementById("sweepResultHA").textContent = `HA: ${sweepResult2.toFixed(2)} BSLT`;
+        document.getElementById("sweepResultHF").textContent = `HF: ${sweepResult3.toFixed(2)} BSLT`;
+        document.getElementById("sweepResultKC").textContent = `KC: ${sweepResult4.toFixed(2)} BSLT`;
+      }
+    </script>
+
+
+    <!-------------------------- BA Shop Calculator ----------------------------->
+    <script>
+      function calculateBAShop() {
+          var dropdown = document.getElementById("dropdown");
+          var selectedOptionValue = parseFloat(dropdown.options[dropdown.selectedIndex].value);
+
+          var discountedCheck = document.getElementById("discountedCheck").checked;
+          var BAPriceCheck = document.getElementById("BAPriceCheck").checked;
+          var BAPrice = parseFloat(document.getElementById("BAPrice").value);
+          var ItemAHPrice = parseFloat(document.getElementById("ItemAHPrice").value);
+        var itemSellCheck = document.getElementById("itemSellCheck").checked; // Get the state of the "itemSellCheck" checkbox.
+
+
+          var result = selectedOptionValue;
+
+          if (discountedCheck) {
+              result *= 0.8;
+          }
+
+        var newBAPrice;
+        var bsltPerBA;
+        
+          if (BAPriceCheck) {
+              newBAPrice = (0.9 * BAPrice);
+              bsltPerBA = (newBAPrice / 5150);
+          }
+        else{
+          bsltPerBA = (60/5000);
+        }
+
+        result *= bsltPerBA;
+        
+
+        if (itemSellCheck) {
+           //AH Tax for selling item
+        result *= 1.1;
+        }
+
+          document.getElementById("BAShopResult").textContent = "= " + ((ItemAHPrice/result) * 100).toFixed(2) + " %";
+      }
+
+    </script>
+
+
+    <!-------------------------- Ghost Ship Tracker ----------------------------->
+  <script>
+    // Initialize logsArray
+    let logsArray = [];
+    
+    // Array to store user-created guilds
+    let userGuilds = [];
+
+    let discordTag = "username";
+    let guildName = "guild";
+    let guildLeader = null; // Store the current guild leader
+
+    // Function to check if the user is a member of any guild
+    function userIsMemberOfGuild() {
+      return userGuilds.length > 0;
+    }
+
+    async function showGuildSelection() {
+      // Display the dropdown and buttons
+      const dropdown = document.getElementById("guildDropdown");
+      const createGuildBtn = document.getElementById("createGuildBtn");
+
+      // Clear previous dropdown options
+      dropdown.innerHTML = "";
+
+      // Load user-created guilds from Firebase Realtime Database
+      const snapshot = await database.ref("guilds").once("value");
+      userGuilds = [];
+
+      // Iterate over the snapshot to populate userGuilds
+      snapshot.forEach((childSnapshot) => {
+        const guildData = childSnapshot.val();
+
+        // Check if the user is a member of the guild
+        if (guildData.members && guildData.members.includes(discordTag)) {
+          userGuilds.push({
+            name: childSnapshot.key, // Use the key as the guild name
+            leader: guildData.leader,
+            members: guildData.members,
+          });
+        }
+      });
+
+      // Check if the user is already a guild leader
+      const isUserLeader = isUserGuildLeader();
+
+      // Show or hide the "Create Guild" button based on the user's leadership status
+      createGuildBtn.style.display = isUserLeader ? "none" : "block";
+
+      // Add user-created guilds to the dropdown
+      for (const userGuild of userGuilds) {
+        const userGuildOption = document.createElement("option");
+        userGuildOption.value = userGuild.name;
+        userGuildOption.textContent = userGuild.name;
+        dropdown.appendChild(userGuildOption);
+      }
+
+      // Show the dropdown and button only if there are options
+      if (dropdown.children.length > 0) {
+        dropdown.style.display = "block";
+
+        // Set up event listener for the "input" event on the dropdown
+        dropdown.addEventListener("input", handleGuildSelection);
+      } else {
+        // If no guilds are available, hide the dropdown and button
+        dropdown.style.display = "none";
+      }
+
+      console.log("User Guilds from Firebase:", userGuilds);
+
+      // Select the first option by default
+      handleGuildSelection();
+    }
+
+
+
+
+
+    function handleGuildSelection() {
+      // Get the selected value from the dropdown
+      const dropdown = document.getElementById("guildDropdown");
+      guildName = dropdown.value;
+
+      // Do something with the selected guild, e.g., save it to a variable or perform an action
+      console.log("Selected Network:", guildName);
+      loadData();
+
+      // Find the current user's guild and set the leader
+      const selectedGuild = userGuilds.find(guild => guild.name === guildName);
+      if (selectedGuild) {
+        guildLeader = selectedGuild.leader;
+      }
+
+      // Show the manage members buttons based on the selected guild
+      showManageMembersButtons();
+    }
+
+    // Function to check if the user is a leader of any guild
+    function isUserGuildLeader() {
+      return userGuilds.some(guild => guild.leader === discordTag);
+    }
+    async function createGuild() {
+      // Check if the user is already a guild leader
+      if (isUserGuildLeader()) {
+        console.log("You are already an owner of a network. You cannot create a new one.");
+        return;
+      }
+
+      // Prompt the user to enter the name for the new network
+      const guildNameInput = prompt("Enter the name for your new network:");
+
+      // Check if the user entered a name
+      if (!guildNameInput) {
+        return;
+      }
+
+      // Check if the guild name already exists
+      if (guildNameExists(guildNameInput)) {
+        alert("Network with that name already exists. Please choose a different name.");
+        return;
+      }
+
+      // Create a new guild
+      const newGuild = {
+        name: guildNameInput,
+        leader: discordTag, // The creator of the guild is the initial leader
+        members: [discordTag], // Add the creator to the members
+      };
+
+      // Add the new guild to the userGuilds array
+      userGuilds.push(newGuild);
+
+      // Set the current guild and leader
+      guildName = newGuild.name;
+      guildLeader = newGuild.leader;
+
+      // Add the leader as a member to the guild
+      await database.ref("guilds/" + guildName).set({
+        leader: guildLeader,
+        members: [guildLeader],
+      });
+
+      // Show the updated guild selection
+      showGuildSelection();
+    }
+
+    // Function to check if the guild name already exists
+    function guildNameExists(name) {
+      return userGuilds.some(guild => guild.name === name);
+    }
+
+
+
+    async function addMember() {
+      const memberToAdd = prompt("Enter the discord to add: (if no hashtag, add '#0'. eg. username#0");
+      if (memberToAdd && !userGuilds.find(guild => guild.members.includes(memberToAdd))) {
+        // Add the member to the current guild
+        const currentGuild = userGuilds.find(guild => guild.name === guildName);
+        currentGuild.members.push(memberToAdd);
+
+        // Update the guild data in Firebase Realtime Database
+        await database.ref("guilds/" + guildName).update({
+          members: currentGuild.members,
+        });
+
+        console.log(`${memberToAdd} has been added to ${guildName}.`);
+      } else {
+        console.log("Invalid username or member already added.");
+      }
+      showManageMembersButtons(); // Update the dropdown after adding a member
+    }
+    
+    async function removeMember() {
+      const membersDropdown = document.getElementById("membersDropdown");
+      const selectedMember = membersDropdown.value;
+
+      // Check if the member exists in the guild
+      const currentGuild = userGuilds.find(guild => guild.name === guildName);
+      if (selectedMember && currentGuild.members.includes(selectedMember)) {
+        // Check if the selected member is the leader
+        if (selectedMember === currentGuild.leader) {
+          console.log("You cannot remove the guild leader.");
+        } else {
+          // Remove the member from the current guild
+          currentGuild.members = currentGuild.members.filter(member => member !== selectedMember);
+
+          // Update the guild data in Firebase Realtime Database
+          await database.ref("guilds/" + guildName).update({
+            members: currentGuild.members,
+          });
+
+          console.log(`${selectedMember} has been removed from ${guildName}.`);
+          showManageMembersButtons(); // Update the dropdown after removing a member
+        }
+      } else {
+        console.log("Invalid username or member not found in the guild.");
+      }
+    }
+
+
+    function showManageMembersButtons() {
+      // Get the button elements
+      const addMemberButton = document.getElementById("addMemberBtn");
+      const removeMemberButton = document.getElementById("removeMemberBtn");
+      const membersDropdown = document.getElementById("membersDropdown");
+
+      // Check if the user is the leader of the currently selected guild
+      const selectedGuild = userGuilds.find((guild) => guild.name === guildName);
+      const isLeaderOfSelectedGuild = selectedGuild && selectedGuild.leader === discordTag;
+
+      // Update the visibility of the buttons based on leadership status
+      addMemberButton.style.display = isLeaderOfSelectedGuild ? "block" : "none";
+      removeMemberButton.style.display = isLeaderOfSelectedGuild ? "block" : "none";
+
+      // Clear the existing options in the members dropdown
+      membersDropdown.innerHTML = "";
+
+      // Create and add the default "Members" option
+      const membersOption = document.createElement("option");
+      membersOption.value = "Members";
+      membersOption.textContent = "Members";
+      membersDropdown.appendChild(membersOption);
+
+      // Populate the members dropdown with the members of the selected guild
+      if (selectedGuild) {
+        for (const member of selectedGuild.members) {
+          const option = document.createElement("option");
+          option.value = member;
+          option.textContent = member;
+          membersDropdown.appendChild(option);
+        }
+      }
+    }
+
+
+
+    
+    // Your web app's Firebase configuration
+    let firebaseConfig;
+    let database; // Declare the database variable globally
+
+    // Function to initialize Firebase
+    function initializeFirebase() {
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      database = app.database(); // Assign the value globally
+
+      // ... rest of your Firebase-related code
+    }
+
+    // Example: Add console log before fetching config
+    console.log('Fetching Firebase config...');
+    fetch('/config')
+      .then(response => response.json())
+      .then(config => {
+        firebaseConfig = config;
+
+        // Call the function to initialize Firebase
+        initializeFirebase();
+      });
+
+    
+    
+    window.onload = () => {
+      const fragment = new URLSearchParams(window.location.hash.slice(1));
+      const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
+      if (!accessToken) {
+        window.location.href('/');
+      }
+
+      fetch('https://discord.com/api/users/@me', {
+        headers: {
+          authorization: `${tokenType} ${accessToken}`,
+        },
+      })
+        .then(result => result.json())
+        .then(async response => {
+          const { username, discriminator, avatar, id } = response;
+
+          document.getElementById('name').innerText = ` ${username}#${discriminator}`;
+          discordTag = (`${username}#${discriminator}`);
+          document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${id}/${avatar}.jpg`;
+
+
+          // Now you can continue with the rest of your logic
+          // Ensure that the guild selection is displayed after fetching the Discord username
+          showGuildSelection();
+        });
+    };
+    
+    
+    // Function to handle time modification
+    function handleTimeModification() {
+      const hoursToAdd = parseInt(document.getElementById("hours").value) || 0;
+      const minutesToAdd = parseInt(document.getElementById("minutes").value) || 0;
+      const location = selectedLocation; // Set your location here
+
+      changedGS(location, hoursToAdd, minutesToAdd);
+    }
+    // Function to add or subtract hours and minutes from a given timestamp
+    function modifyTimestamp(timestamp, hoursToAdd, minutesToAdd) {
+      const modifiedTimestamp = new Date(timestamp);
+      modifiedTimestamp.setHours(modifiedTimestamp.getHours() + hoursToAdd);
+      modifiedTimestamp.setMinutes(modifiedTimestamp.getMinutes() + minutesToAdd);
+      return modifiedTimestamp;
+    }
+    
+
+
+
+    // Other JavaScript functions and event listeners go here
+
+    function toggleButtonVisibility(buttonId) {
+      var button = document.getElementById(buttonId);
+      button.classList.remove('hiddenbtns');
+    }
+
+    function updateInfoText(title) {
+      document.getElementById('image-title').textContent = title;
+    }
+
+    function hideAllButtons() {
+
+      document.getElementById('btn_CinderS').classList.add('hiddenbtns');
+      document.getElementById('btn_CinderSE').classList.add('hiddenbtns');
+      document.getElementById('btn_CinderN').classList.add('hiddenbtns');
+      document.getElementById('btn_Solis').classList.add('hiddenbtns');
+      document.getElementById('btn_Maha').classList.add('hiddenbtns');
+      document.getElementById('btn_Yny').classList.add('hiddenbtns');
+      document.getElementById('btn_Island').classList.add('hiddenbtns');
+    }
+    function updateChatBox(logsArray) {
+      const chatBox = document.getElementById('chat-box');
+
+      // Clear the current chat box content
+      chatBox.innerHTML = '';
+
+      // Iterate through the logsArray and create message elements
+      for (const log of logsArray) {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = log;
+        chatBox.appendChild(messageElement);
+      }
+
+      // Scroll to the bottom to show the latest messages
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+
+    let packs = 0;
+    let gsCount = 0;
+    let islandTime = 0;
+
+    // Initialize variables with default values or load from a JSON file
+    let locations = {
+      CinderS: { time: 0, status: "up" },
+      CinderSE: { time: 0, status: "up" },
+      CinderN: { time: 0, status: "up" },
+      Solis: { time: 0, status: "up" },
+      Maha: { time: 0, status: "up" },
+      Yny: { time: 0, status: "up" },
+    };
+
+    let storedLocationData = null;
+
+    function changeImage(newimageId) {
+      const imageIds = ["image1", "image2", "image3", "image4", "image5", "image6", "image7"];
+
+      for (const imageId of imageIds) {
+        const img = document.getElementById(imageId);
+        if (img) {
+          img.src = "flag.png";
+        }
+      }
+      const image2 = document.getElementById(newimageId);
+      if (image2) {
+        image2.src = "flagred.png";
+      }
+    }
+
+
+    // Function to add or subtract hours and minutes from a given timestamp
+    function modifyTimestamp(timestamp, hoursToAdd, minutesToAdd) {
+      const modifiedTimestamp = new Date(timestamp);
+      modifiedTimestamp.setHours(modifiedTimestamp.getHours() + hoursToAdd);
+      modifiedTimestamp.setMinutes(modifiedTimestamp.getMinutes() + minutesToAdd);
+      return modifiedTimestamp;
+    }
+    
+    let selectedLocation = '';
+    
+    function updateSelectedLocation(loc) {
+      selectedLocation = loc;
+      document.getElementById("btn_Kill").textContent = `+ Killed ${loc}`;
+    }
+
+    function handleGsCountModification() {
+        const gsCountInput = parseInt(document.getElementById("gsCountINPUT").value);
+        setGsCount(gsCountInput);
+        // You can add additional logic as needed
+    }
+
+    function handlePacksModification() {
+        const packsInput = parseInt(document.getElementById("packsINPUT").value);
+        setPacks(packsInput);
+        // You can add additional logic as needed
+    }
+
+    async function setGsCount(count) {
+      if(discordTag == "undefined#undefined"){
+        autologout();
+        return;
+      }
+      const timeStampCode = new Date().getTime();
+        // Your logic to set the Ghost Ship count
+      addLogMessage(`${timeStampCode} : ${discordTag} has set the DGS counter from ${gsCount} to ${count}.`);
+      gsCount = count;
+      await saveData();
+      // Load data again after saving changes
+      await loadData();
+    }
+
+    async function setPacks(count) {
+      if(discordTag == "undefined#undefined"){
+        autologout();
+        return;
+      }
+      const timeStampCode = new Date().getTime();
+        // Your logic to set the number of packs
+      addLogMessage(`${timeStampCode} : ${discordTag} has set the Kraken counter from ${packs} to ${count}.`);
+      packs = count;
+      await saveData();
+      // Load data again after saving changes
+      await loadData();
+    }
+    
+    async function killedGS() {
+      if (discordTag == "undefined#undefined") {
+        autologout();
+        return;
+      }
+      if (selectedLocation == "Island") {
+        updateIsland();
+        return;
+      }
+      await loadData();
+
+      const currentTime = new Date();
+      const location = selectedLocation;
+      console.log("Selected Location:", location);
+
+      // Check if the location is valid
+      if (locations.hasOwnProperty(location)) {
+        locations[location].status = "up"; // Set status to "up" when using !time
+
+        // Modify the current time based on the provided hours and minutes
+        const modifiedTime = modifyTimestamp(currentTime, 6, 0);
+        console.log("Modified Time:", modifiedTime);
+
+        // Convert modifiedTime to a timestamp
+        const timestamp = modifiedTime.getTime();
+        console.log("Timestamp:", timestamp);
+
+        locations[location].time = timestamp;
+        if(storedLocationData!=null){
+        storedLocationData[location].time = timestamp;
+        }
+        // Add +5 to "packs"
+        packs += 5;
+        // Sub 1 GS from DGS spawn
+        gsCount += 1;
+
+        const currentTimeCode = currentTime.getTime();
+        addLogMessage(`${currentTimeCode} : ${discordTag} has killed ${location} Ghost Ship`);
+      }
+
+      // Save data after making changes
+      await saveData();
+      // Load data again after saving changes
+      await loadData();
+    }
+
+
+    
+    async function changedGS(loc, hoursToAdd, minutesToAdd) {
+      if (loc == "Island") {
+        changedIsland(loc, hoursToAdd, minutesToAdd);
+        return;
+      }
+      await loadData();
+      const currentTime = new Date();
+      const location = loc;
+
+      // Check if the location is valid
+      if (locations.hasOwnProperty(location)) {
+          // Modify the current time based on the provided hours and minutes
+          const modifiedTime = modifyTimestamp(currentTime, hoursToAdd, minutesToAdd);
+          // Convert modifiedTime to a timestamp
+          const timestamp = modifiedTime.getTime();
+          locations[location].time = timestamp;
+          const currentTimeCode = currentTime.getTime();
+          addLogMessage(`${currentTimeCode} : ${discordTag} has changed the time for ${location} Ghost Ship`);
+      }
+      // Save data after making changes
+      await saveData();
+      // Load data again after saving changes
+      await loadData();
+    }
+
+
+    async function updateIsland() {
+      await loadData();
+      // +4 hours
+      const currentTime = new Date();
+      const timeStampCode = currentTime.getTime();
+      currentTime.setHours(currentTime.getHours() + 4);
+      // Update the islandTime and save it to the database
+      if (currentTime) {
+        islandTime = currentTime.getTime();
+      }
+      currentTime.setHours(currentTime.getHours() - 4);
+      const currentTimeCode = currentTime.getTime();
+    addLogMessage(`${currentTimeCode} : ${discordTag} has started Island`);
+      await saveData();
+      // Load data again after saving changes
+      await loadData();
+    }
+    async function changedIsland(loc, hoursToAdd, minutesToAdd) {
+      await loadData();
+      const currentTime = new Date();
+      const location = loc;
+
+          // Modify the current time based on the provided hours and minutes
+          const modifiedTime = modifyTimestamp(currentTime, hoursToAdd, minutesToAdd);
+          // Convert modifiedTime to a timestamp
+          const timestamp = modifiedTime.getTime();
+          islandTime = timestamp;
+      const currentTimeCode = currentTime.getTime();
+          addLogMessage(`${currentTimeCode} : ${discordTag} has changed the time for ${location}`);
+      
+      // Save data after making changes
+      await saveData();
+      // Load data again after saving changes
+      await loadData();
+    }
+
+    
+
+    // Function to convert a UTC timestamp to local time and return as a string
+    function convertToLocale(timestamp) {
+      const date = new Date(timestamp);
+      const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      };
+      return date.toLocaleString('en-US', options);
+    }
+
+
+
+    // Helper function to calculate remaining hours and minutes
+    function calculateRemainingTime(locationData, timerId) {
+      const locationTime = locationData.time;
+      const currentTime = new Date();
+
+      if (!isNaN(locationTime)) {
+        const timeDifference = locationTime - currentTime;
+
+        if (timeDifference < 0) {
+          document.getElementById(timerId).textContent = "Respawned";
+        } else {
+          const remainingHours = Math.floor(timeDifference / (1000 * 60 * 60));
+          const remainingMinutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+          document.getElementById(timerId).textContent = `${remainingHours}h ${remainingMinutes}m`;
+        }
+      } else if (locationData.time == null && locationData.status === "up") {
+        document.getElementById(timerId).textContent = "Respawned";
+      } else if (locationData.time == null && locationData.status === "down") {
+        document.getElementById(timerId).textContent = "Down";
+      }
+    }
+
+    function calcTimers(){
+      for (const location in storedLocationData) {
+        if (storedLocationData.hasOwnProperty(location)) {
+          const timerId = `${location}_timer`;
+          const locationData = storedLocationData[location];
+          const timerDisplay = document.getElementById(timerId);
+
+          if (timerDisplay) {
+            calculateRemainingTime(locationData, timerId);
+          }
+        }
+      }
+    }
+
+    // Function to update UI or perform other actions with loaded data
+    function updateUI(data) {
+      // Perform actions to update the UI with loaded data
+      calcTimers();
+      console.log("Data loaded:", data);
+
+      // Restart DGS and Kraken counts
+      if (gsCount >= 24) {
+        gsCount -= 24;
+      }
+      if (packs >= 500) {
+        packs -= 500;
+      }
+
+      document.getElementById('Krakentext').textContent = `Packs For Kraken: ${packs}/500`;
+      document.getElementById('DGStext').textContent = `Ghostships For DGS: ${gsCount}/24`;
+
+      // Update the island timer
+      const islandTimerId = 'Island_timer';
+      if (data && data.islandTime !== null) {
+        calculateRemainingTime({ time: data.islandTime }, islandTimerId);
+      } else {
+        document.getElementById(islandTimerId).textContent = 'Respawned';
+      }
+    }
+
+
+
+    // Function to load data and logs from Firebase
+    async function loadData() {
+      
+      // Check if the user is a member of any guild and a guild is selected
+      if (!userIsMemberOfGuild() || !guildName) {
+        alert("Please join or create a network before using this feature.");
+        return;
+      }
+      
+      try {
+        let dataRef = database.ref(guildName + '/data'); // Use guildName in the path
+
+        // Load data
+        const dataSnapshot = await dataRef.once('value');
+        const data = dataSnapshot.val();
+
+        // Load logs data
+        const logsSnapshot = await dataRef.child('logs').once('value');
+        const logsData = logsSnapshot.val();
+
+        if (logsData !== null) {
+          // Update your logsArray with the loaded data
+          logsArray = logsData;
+          console.log('Logs loaded successfully:', logsArray);
+
+          // Convert timestamps and update chat box
+          let localLogsArray = [];
+          for (let i = 0; i < logsArray.length; i++) {
+            const logEntry = logsArray[i];
+            const match = logEntry.match(/(\d{13})/); // Find the 13-digit timestamp
+            if (match) {
+              const timestamp = parseInt(match[0]);
+              const localTime = convertToLocale(timestamp);
+              const localLogEntry = logEntry.replace(match[0], localTime);
+              localLogsArray.push(localLogEntry);
+            } else {
+              // If there is no timestamp, simply copy the log entry to localLogsArray
+              localLogsArray.push(logEntry);
+            }
+          }
+
+          // Update chat box
+          updateChatBox(localLogsArray);
+          console.log(`LOGS CONVERTED TIME: ${localLogsArray}`);
+        } else {
+          console.log('No logs data found in the database.');
+        }
+
+        // Load location data
+        const locationData = data.locations || {}; // Use an empty object as a fallback
+        storedLocationData = locationData;
+
+        // Update local variables
+        locations = locationData;
+        packs = data.packs;
+        gsCount = data.gsCount;
+        islandTime = data.islandTime;
+
+        // Update UI
+        updateUI(data);
+      } catch (error) {
+        console.error("Error loading data:", error);
+      }
+    }
+
+
+
+
+
+
+    // Define the array to hold unsaved logs
+    let unsavedLogsArray = [];
+
+    // Function to add a new message to the unsaved logs array
+    function addUnsavedLogMessage(message) {
+        unsavedLogsArray.push(message);
+    }
+
+    // Define the maximum number of logs to keep
+    const MAX_LOGS = 30;
+
+    // Function to add a new message to the logs array
+    function addLogMessage(message) {
+      if (!Array.isArray(logsArray)) {
+        logsArray = [];
+      }
+
+      // Add the new log message to the end of the array
+      logsArray.push(message);
+
+      // Keep only the latest MAX_LOGS entries
+      logsArray = logsArray.slice(Math.max(logsArray.length - MAX_LOGS, 0));
+    }
+
+
+
+    // Function to update and save data to Firebase Realtime Database
+    async function saveData() {
+      
+      // Check if the user is a member of any guild and a guild is selected
+      if (!userIsMemberOfGuild() || !guildName) {
+        alert("Please join or create a network before using this feature.");
+        return;
+      }
+      
+      try {
+        if (gsCount >= 24) {
+          gsCount -= 24;
+        }
+        if (packs >= 500) {
+          packs -= 500;
+        }
+
+        let dataRef = database.ref(guildName + '/data'); // Use guildName in the path
+
+        // Load data before making changes
+        const snapshotBefore = await dataRef.once('value');
+        const dataBefore = snapshotBefore.val();
+        console.log("Data Before Update:", dataBefore);
+
+        // Get the existing logs or initialize an empty array
+        const existingLogs = dataBefore ? dataBefore.logs || [] : [];
+
+        // Concatenate existing logs with unsaved logs and keep only the latest MAX_LOGS entries
+        const newLogs = existingLogs.concat(unsavedLogsArray).slice(0, MAX_LOGS);
+
+        const newData = {
+          locations,
+          packs,
+          gsCount,
+          islandTime,
+          logs: newLogs,
+        };
+
+        // Set the new data
+        await dataRef.set(newData);
+
+        // Clear unsavedLogsArray after saving to the database
+        unsavedLogsArray = [];
+
+        // Load data again after making changes
+        const snapshotAfter = await dataRef.once('value');
+        const dataAfter = snapshotAfter.val();
+        console.log("Data After Update:", dataAfter);
+
+        console.log("Data updated and saved successfully.");
+
+        // Update UI with the latest data
+        updateUI(dataAfter);
+
+        // Push logs after updating data
+        await pushLogsToDatabase();
+      } catch (error) {
+        console.error("Error updating and saving data:", error);
+      }
+    }
+
+    // Function to push logs to Firebase Realtime Database
+    async function pushLogsToDatabase() {
+      try {
+        let logsRef = database.ref(guildName + '/data/logs'); // Use guildName in the path
+
+        // Ensure the path exists by creating it if it doesn't
+        await logsRef.set(null);
+
+        // Keep only the latest MAX_LOGS entries before pushing to the database
+        unsavedLogsArray = unsavedLogsArray.slice(0, MAX_LOGS);
+
+        // Concatenate unsaved logs with logsArray and push
+        await logsRef.set((unsavedLogsArray || []).concat(logsArray || []));
+        console.log('Logs pushed successfully.');
+      } catch (error) {
+        console.error('Error pushing logs:', error);
+      }
+    }
+
+
+    function autologout(){
+      // Set the location to the desired URL
+      window.location.href = "https://awtools.wheathn.repl.co/";
+    }
+
+
+    // Update the timers every 10 seconds
+    setInterval(calcTimers, 10 * 1000);
+
+          // Load every 900 seconds
+          setInterval(loadData, 900 * 1000);
+          // Load every 900 seconds
+          //setInterval(loadLogs, 900 * 1000);
+
+    
+  </script>
+
+    <!----------------------- Skill Calculator Script --------------------------->
+    <script>
+        // Skill data mapping each tree to its skills, including the path to skill icons
+        const skillData = {
+            Battlerage: [
+                { name: "Triple Slash", icon: "skills/Battlerage/skill_1.png", description: "" },
+                { name: "Charge", icon: "skills/Battlerage/skill_2.png", description: "" },
+                { name: "Battle Focus", icon: "skills/Battlerage/skill_3.png", description: "" },
+                { name: "Whirlwind Slash", icon: "skills/Battlerage/skill_4.png", description: "" },
+                { name: "Sunder Earth", icon: "skills/Battlerage/skill_5.png", description: "" },
+                { name: "Frenzy", icon: "skills/Battlerage/skill_6.png", description: "" },
+                { name: "Precision Strike", icon: "skills/Battlerage/skill_7.png", description: "" },
+                { name: "Tiger Strike", icon: "skills/Battlerage/skill_8.png", description: "" },
+                { name: "Unbind", icon: "skills/Battlerage/skill_9.png", description: "" },
+                { name: "Terrifying Roar", icon: "skills/Battlerage/skill_10.png", description: "" },
+                { name: "Hammer Toss", icon: "skills/Battlerage/skill_11.png", description: "" },
+                { name: "Behind Enemy Lines", icon: "skills/Battlerage/skill_12.png", description: "" },
+            ],
+            // Add passive skills
+            BattleragePassive: [
+                { name: "Deflect and Retaliate", icon: "skills/Battlerage/passive_1.png", description: "" },
+                { name: "Reckless Charge", icon: "skills/Battlerage/passive_2.png", description: "" },
+                { name: "Puncture", icon: "skills/Battlerage/passive_3.png", description: "" },
+                { name: "Attack Speed Training", icon: "skills/Battlerage/passive_4.png", description: "" },
+                { name: "Weapons Mastery", icon: "skills/Battlerage/passive_5.png", description: "" },
+                { name: "Deadly Duelist", icon: "skills/Battlerage/passive_6.png", description: "" },
+            ],
+            Witchcraft: [
+                { name: "Focal Concussion", icon: "skills/Witchcraft/skill_1.png", description: "" },
+                { name: "Enervated", icon: "skills/Witchcraft/skill_2.png", description: "" },
+                { name: "Dahuta's Breath", icon: "skills/Witchcraft/skill_3.png", description: "" },
+                { name: "Insidious Whisper", icon: "skills/Witchcraft/skill_4.png", description: "" },
+                { name: "Mirror Warp", icon: "skills/Witchcraft/skill_5.png", description: "" },
+                { name: "Purge", icon: "skills/Witchcraft/skill_6.png", description: "" },
+                { name: "Lassitude", icon: "skills/Witchcraft/skill_7.png", description: "" },
+                { name: "Fiend's Knell", icon: "skills/Witchcraft/skill_8.png", description: "" },
+                { name: "Bubble Trap", icon: "skills/Witchcraft/skill_9.png", description: "" },
+                { name: "Summon Monster", icon: "skills/Witchcraft/skill_10.png", description: "" },
+                { name: "Earthen Grip", icon: "skills/Witchcraft/skill_11.png", description: "" },
+                { name: "Stillness", icon: "skills/Witchcraft/skill_12.png", description: "" },
+            ],
+            // Add passive skills
+            WitchcraftPassive: [
+                { name: "Folding Time", icon: "skills/Witchcraft/passive_1.png", description: "" },
+                { name: "Homing Hexes", icon: "skills/Witchcraft/passive_2.png", description: "" },
+                { name: "Illusion's Favor", icon: "skills/Witchcraft/passive_3.png", description: "" },
+                { name: "Exploitation", icon: "skills/Witchcraft/passive_4.png", description: "" },
+                { name: "Augment Witchcraft", icon: "skills/Witchcraft/passive_5.png", description: "" },
+                { name: "Enshroud", icon: "skills/Witchcraft/passive_6.png", description: "" },
+            ],
+            Defense: [
+                { name: "Shield Slam", icon: "skills/Defense/skill_1.png", description: "" },
+                { name: "Toughen", icon: "skills/Defense/skill_2.png", description: "" },
+                { name: "Shout of life", icon: "skills/Defense/skill_3.png", description: "" },
+                { name: "Mocking Howl", icon: "skills/Defense/skill_4.png", description: "" },
+                { name: "Bull Rush", icon: "skills/Defense/skill_5.png", description: "" },
+                { name: "Refreshment", icon: "skills/Defense/skill_6.png", description: "" },
+                { name: "Redoubt", icon: "skills/Defense/skill_7.png", description: "" },
+                { name: "Will of Protection", icon: "skills/Defense/skill_8.png", description: "" },
+                { name: "Lasso", icon: "skills/Defense/skill_9.png", description: "" },
+                { name: "Boastful Roar", icon: "skills/Defense/skill_10.png", description: "" },
+                { name: "Imprison", icon: "skills/Defense/skill_11.png", description: "" },
+                { name: "Invincibility", icon: "skills/Defense/skill_12.png", description: "" },
+            ],
+            // Add passive skills
+            DefensePassive: [
+                { name: "Supplemental Block", icon: "skills/Defense/passive_1.png", description: "" },
+                { name: "Spry Fortress", icon: "skills/Defense/passive_2.png", description: "" },
+                { name: "Shield of Steel", icon: "skills/Defense/passive_3.png", description: "" },
+                { name: "Bear's Vigor", icon: "skills/Defense/passive_4.png", description: "" },
+                { name: "Ursine Roar", icon: "skills/Defense/passive_5.png", description: "" },
+                { name: "Shield Mastery", icon: "skills/Defense/passive_6.png", description: "" },
+            ],
+            Auramancy: [
+                { name: "Thwart", icon: "skills/Auramancy/skill_1.png", description: "" },
+                { name: "Comet's Boon", icon: "skills/Auramancy/skill_2.png", description: "" },
+                { name: "Conversion Shield", icon: "skills/Auramancy/skill_3.png", description: "" },
+                { name: "Courageous Action", icon: "skills/Auramancy/skill_4.png", description: "" },
+                { name: "Teleportation", icon: "skills/Auramancy/skill_5.png", description: "" },
+                { name: "Health Lift", icon: "skills/Auramancy/skill_6.png", description: "" },
+                { name: "Meditate", icon: "skills/Auramancy/skill_7.png", description: "" },
+                { name: "Shrug It Off", icon: "skills/Auramancy/skill_8.png", description: "" },
+                { name: "Vicious Implosion", icon: "skills/Auramancy/skill_9.png", description: "" },
+                { name: "Banishment", icon: "skills/Auramancy/skill_10.png", description: "" },
+                { name: "Protective Wings", icon: "skills/Auramancy/skill_11.png", description: "" },
+                { name: "Bracing Blast", icon: "skills/Auramancy/skill_12.png", description: "" },
+            ],
+            // Add passive skills
+            AuramancyPassive: [
+                { name: "Absorb Damage", icon: "skills/Auramancy/passive_1.png", description: "" },
+                { name: "Inner Peace", icon: "skills/Auramancy/passive_2.png", description: "" },
+                { name: "Unassailable", icon: "skills/Auramancy/passive_3.png", description: "" },
+                { name: "Ward Mastery", icon: "skills/Auramancy/passive_4.png", description: "" },
+                { name: "Accelerated Casting", icon: "skills/Auramancy/passive_5.png", description: "" },
+                { name: "Unwavering Will", icon: "skills/Auramancy/passive_6.png", description: "" },
+            ],
+            Occultism: [
+                { name: "Absorb Lifeforce", icon: "skills/Occultism/skill_1.png", description: "" },
+                { name: "Play Dead", icon: "skills/Occultism/skill_2.png", description: "" },
+                { name: "Summon Crows", icon: "skills/Occultism/skill_3.png", description: "" },
+                { name: "Hell Spear", icon: "skills/Occultism/skill_4.png", description: "" },
+                { name: "Cursed Thorns", icon: "skills/Occultism/skill_5.png", description: "" },
+                { name: "Boneyard", icon: "skills/Occultism/skill_6.png", description: "" },
+                { name: "Pain Harvest", icon: "skills/Occultism/skill_7.png", description: "" },
+                { name: "Shadow Step", icon: "skills/Occultism/skill_8.png", description: "" },
+                { name: "Crippling Mire", icon: "skills/Occultism/skill_9.png", description: "" },
+                { name: "Death's Vengeance", icon: "skills/Occultism/skill_10.png", description: "" },
+                { name: "Summon Wraith", icon: "skills/Occultism/skill_11.png", description: "" },
+                { name: "Shadow Vortex", icon: "skills/Occultism/skill_12.png", description: "" },
+            ],
+            // Add passive skills
+            OccultismPassive: [
+                { name: "Energy of the Hereafter", icon: "skills/Occultism/passive_1.png", description: "" },
+                { name: "Traumatize", icon: "skills/Occultism/passive_2.png", description: "" },
+                { name: "Inevitability", icon: "skills/Occultism/passive_3.png", description: "" },
+                { name: "Burning Brand", icon: "skills/Occultism/passive_4.png", description: "" },
+                { name: "Death's Beckoning", icon: "skills/Occultism/passive_5.png", description: "" },
+                { name: "Critical Failure", icon: "skills/Occultism/passive_6.png", description: "" },
+            ],
+            Archery: [
+                { name: "Endless Arrows", icon: "skills/Archery/skill_1.png", description: "" },
+                { name: "Charged Bolt", icon: "skills/Archery/skill_2.png", description: "" },
+                { name: "Steady Shooting", icon: "skills/Archery/skill_3.png", description: "" },
+                { name: "Fending Arrow", icon: "skills/Archery/skill_4.png", description: "" },
+                { name: "Deadeye", icon: "skills/Archery/skill_5.png", description: "" },
+                { name: "Snare", icon: "skills/Archery/skill_6.png", description: "" },
+                { name: "Double Recurve", icon: "skills/Archery/skill_7.png", description: "" },
+                { name: "Concussive Arrow", icon: "skills/Archery/skill_8.png", description: "" },
+                { name: "Hunter's Guile", icon: "skills/Archery/skill_9.png", description: "" },
+                { name: "Snipe", icon: "skills/Archery/skill_10.png", description: "" },
+                { name: "Missile Rain", icon: "skills/Archery/skill_11.png", description: "" },
+                { name: "Blazing Arrow", icon: "skills/Archery/skill_12.png", description: "" },
+            ],
+            // Add passive skills
+            ArcheryPassive: [
+                { name: "Wild Instincts", icon: "skills/Archery/passive_1.png", description: "" },
+                { name: "Relentless", icon: "skills/Archery/passive_2.png", description: "" },
+                { name: "Eagle Eyes", icon: "skills/Archery/passive_3.png", description: "" },
+                { name: "Feral Claws", icon: "skills/Archery/passive_4.png", description: "" },
+                { name: "Sharpshooting", icon: "skills/Archery/passive_5.png", description: "" },
+                { name: "Marksman", icon: "skills/Archery/passive_6.png", description: "" },
+            ],
+            Sorcery: [
+                { name: "Flamebolt", icon: "skills/Sorcery/skill_1.png", description: "" },
+                { name: "Freezing Arrow", icon: "skills/Sorcery/skill_2.png", description: "" },
+                { name: "Protective Shield", icon: "skills/Sorcery/skill_3.png", description: "" },
+                { name: "Chain Lightning", icon: "skills/Sorcery/skill_4.png", description: "" },
+                { name: "Magic Circle", icon: "skills/Sorcery/skill_5.png", description: "" },
+                { name: "Freezing Earth", icon: "skills/Sorcery/skill_6.png", description: "" },
+                { name: "Flame Barrier", icon: "skills/Sorcery/skill_7.png", description: "" },
+                { name: "Frigid Tracks", icon: "skills/Sorcery/skill_8.png", description: "" },
+                { name: "Searing Rain", icon: "skills/Sorcery/skill_9.png", description: "" },
+                { name: "Arc Lightning", icon: "skills/Sorcery/skill_10.png", description: "" },
+                { name: "Ice rain", icon: "skills/Sorcery/skill_11.png", description: "" },
+                { name: "Gods' Whip", icon: "skills/Sorcery/skill_12.png", description: "" },
+            ],
+            // Add passive skills
+            SorceryPassive: [
+                { name: "Max Mana Increase", icon: "skills/Sorcery/passive_1.png", description: "" },
+                { name: "Aranzeb's Infusion", icon: "skills/Sorcery/passive_2.png", description: "" },
+                { name: "Mind Over Matter", icon: "skills/Sorcery/passive_3.png", description: "" },
+                { name: "Mana Fountain", icon: "skills/Sorcery/passive_4.png", description: "" },
+                { name: "Heir to Ayanad", icon: "skills/Sorcery/passive_5.png", description: "" },
+                { name: "Sorcery Adept", icon: "skills/Sorcery/passive_6.png", description: "" },
+            ],
+            Shadowplay: [
+                { name: "Rapid Strike", icon: "skills/Shadowplay/skill_1.png", description: "" },
+                { name: "Poisoned Weapons", icon: "skills/Shadowplay/skill_2.png", description: "" },
+                { name: "Pin Down", icon: "skills/Shadowplay/skill_3.png", description: "" },
+                { name: "Wallop", icon: "skills/Shadowplay/skill_4.png", description: "" },
+                { name: "Overwhelm", icon: "skills/Shadowplay/skill_5.png", description: "" },
+                { name: "Stalker's Mark", icon: "skills/Shadowplay/skill_6.png", description: "" },
+                { name: "Drop Back", icon: "skills/Shadowplay/skill_7.png", description: "" },
+                { name: "Stealth", icon: "skills/Shadowplay/skill_8.png", description: "" },
+                { name: "Freerunner", icon: "skills/Shadowplay/skill_9.png", description: "" },
+                { name: "Rear Suprise Attack", icon: "skills/Shadowplay/skill_10.png", description: "" },
+                { name: "Leech", icon: "skills/Shadowplay/skill_11.png", description: "" },
+                { name: "Throw Dagger", icon: "skills/Shadowplay/skill_12.png", description: "" },
+            ],
+            // Add passive skills
+            ShadowplayPassive: [
+                { name: "Shadow Training", icon: "skills/Shadowplay/passive_1.png", description: "" },
+                { name: "Become Void", icon: "skills/Shadowplay/passive_2.png", description: "" },
+                { name: "Ruthless Assault", icon: "skills/Shadowplay/passive_3.png", description: "" },
+                { name: "Bloodthirst Intensified", icon: "skills/Shadowplay/passive_4.png", description: "" },
+                { name: "Lethal Toxins", icon: "skills/Shadowplay/passive_5.png", description: "" },
+                { name: "Shadow Mastery", icon: "skills/Shadowplay/passive_6.png", description: "" },
+            ],
+            Songcraft: [
+                { name: "Healing Hymn", icon: "skills/Songcraft/skill_1.png", description: "" },
+                { name: "[Perform] Ode to Recovery", icon: "skills/Songcraft/skill_2.png", description: "" },
+                { name: "Double-Time", icon: "skills/Songcraft/skill_3.png", description: "" },
+                { name: "Dissonance", icon: "skills/Songcraft/skill_4.png", description: "" },
+                { name: "Startling Strain", icon: "skills/Songcraft/skill_5.png", description: "" },
+                { name: "Morning Bugle", icon: "skills/Songcraft/skill_6.png", description: "" },
+                { name: "[Perform] Quickstep", icon: "skills/Songcraft/skill_7.png", description: "" },
+                { name: "Deadly Refrain", icon: "skills/Songcraft/skill_8.png", description: "" },
+                { name: "[Perform] Ballad of the Earth", icon: "skills/Songcraft/skill_9.png", description: "" },
+                { name: "Critical Discord", icon: "skills/Songcraft/skill_10.png", description: "" },
+                { name: "[Perform] Bloody Chantey", icon: "skills/Songcraft/skill_11.png", description: "" },
+                { name: "Battle Hymn", icon: "skills/Songcraft/skill_12.png", description: "" },
+            ],
+            // Add passive skills
+            SongcraftPassive: [
+                { name: "Piercing Melody", icon: "skills/Songcraft/passive_1.png", description: "" },
+                { name: "Hold the Note", icon: "skills/Songcraft/passive_2.png", description: "" },
+                { name: "Zeal", icon: "skills/Songcraft/passive_3.png", description: "" },
+                { name: "Disciplined Performance", icon: "skills/Songcraft/passive_4.png", description: "" },
+                { name: "Lingering Impact", icon: "skills/Songcraft/passive_5.png", description: "" },
+                { name: "Loudspeaker", icon: "skills/Songcraft/passive_6.png", description: "" },
+            ],
+            Vitalism: [
+                { name: "Holy Bolt", icon: "skills/Vitalism/skill_1.png", description: "" },
+                { name: "Mirror Light", icon: "skills/Vitalism/skill_2.png", description: "" },
+                { name: "Antithesis", icon: "skills/Vitalism/skill_3.png", description: "" },
+                { name: "Renewal", icon: "skills/Vitalism/skill_4.png", description: "" },
+                { name: "Skewer", icon: "skills/Vitalism/skill_5.png", description: "" },
+                { name: "Mend All", icon: "skills/Vitalism/skill_6.png", description: "" },
+                { name: "Resurgence", icon: "skills/Vitalism/skill_7.png", description: "" },
+                { name: "Fervent Healing", icon: "skills/Vitalism/skill_8.png", description: "" },
+                { name: "Revive", icon: "skills/Vitalism/skill_9.png", description: "" },
+                { name: "Aranzeb's Boon", icon: "skills/Vitalism/skill_10.png", description: "" },
+                { name: "Mana Barrier", icon: "skills/Vitalism/skill_11.png", description: "" },
+                { name: "Healing Circle", icon: "skills/Vitalism/skill_12.png", description: "" },
+            ],
+            // Add passive skills
+            VitalismPassive: [
+                { name: "Prophet's Voice", icon: "skills/Vitalism/passive_1.png", description: "" },
+                { name: "Quick Recovery", icon: "skills/Vitalism/passive_2.png", description: "" },
+                { name: "Joyous Spirit", icon: "skills/Vitalism/passive_3.png", description: "" },
+                { name: "Martyr's Way", icon: "skills/Vitalism/passive_4.png", description: "" },
+                { name: "Invigorated Healing", icon: "skills/Vitalism/passive_5.png", description: "" },
+                { name: "Vibrant Casting", icon: "skills/Vitalism/passive_6.png", description: "" },
+            ],
+            // Add other skill trees
+        };
+
+        // Maximum allowed skills
+        const maxSkills = 20;
+
+        function updateSkills(treeId) {
+            // Get selected skill tree
+            const tree = document.getElementById(treeId).value;
+
+            // Clear previously selected skills for the specific tree
+            document.getElementById(`${treeId}Skills`).innerHTML = '';
+
+            // Display selected skills for the current tree
+            displaySkills(tree, `${treeId}Skills`);
+            updateSelectedCount();
+        }
+
+
+
+
+
+
+        // Helper function to create a tooltip element
+        function createTooltip(skill) {
+            const tooltip = document.createElement('div');
+            tooltip.classList.add('tooltip');
+
+            // Customize tooltip content based on your requirements
+            tooltip.innerHTML = `
+        <strong>${skill.name}</strong><br>
+        ${skill.description || '-'}
+    `;
+
+            return tooltip;
+        }
+
+        function displaySkills(tree, columnId) {
+            const column = document.getElementById(columnId);
+
+            // Function to update tooltip position based on cursor
+            function updateTooltipPosition(event, tooltip) {
+                const offsetX = 10; // Adjust as needed
+                const offsetY = 10; // Adjust as needed
+                tooltip.style.left = event.pageX + offsetX + 'px';
+                tooltip.style.top = event.pageY + offsetY + 'px';
+            }
+
+            // Add active skills for the selected tree
+            if (tree && skillData[tree]) {
+                const activeSkillRow = document.createElement('div');
+                activeSkillRow.classList.add('skillRow');
+
+                for (const skill of skillData[tree]) {
+                    const skillItem = document.createElement('div');
+                    skillItem.classList.add('skillItem');
+
+                    const img = document.createElement('img');
+                    img.src = skill.icon;
+                    img.alt = skill.name;
+                    img.classList.add('skillImage');
+                    img.addEventListener('click', toggleSkillSelection);
+
+                    // Create and attach tooltip
+                    const tooltip = createTooltip(skill);
+                    img.addEventListener('mouseenter', (event) => {
+                        document.body.appendChild(tooltip);
+                        updateTooltipPosition(event, tooltip);
+                    });
+                    img.addEventListener('mousemove', (event) => {
+                        updateTooltipPosition(event, tooltip);
+                    });
+                    img.addEventListener('mouseleave', () => {
+                        document.body.removeChild(tooltip);
+                    });
+
+                    skillItem.appendChild(img);
+                    activeSkillRow.appendChild(skillItem);
+                }
+
+                column.appendChild(activeSkillRow);
+            }
+
+            // Add passive skills for the selected tree
+            const passiveTree = `${tree}Passive`;
+            if (tree && skillData[passiveTree]) {
+                const passiveSkillRow = document.createElement('div');
+                passiveSkillRow.classList.add('skillRow');
+
+                for (const skill of skillData[passiveTree]) {
+                    const skillItem = document.createElement('div');
+                    skillItem.classList.add('passiveItem');
+
+                    const img = document.createElement('img');
+                    img.src = skill.icon;
+                    img.alt = skill.name;
+                    img.classList.add('skillImagePassive');
+
+                    // Create and attach tooltip
+                    const tooltip = createTooltip(skill);
+                    img.addEventListener('mouseenter', (event) => {
+                        document.body.appendChild(tooltip);
+                        updateTooltipPosition(event, tooltip);
+                    });
+                    img.addEventListener('mousemove', (event) => {
+                        updateTooltipPosition(event, tooltip);
+                    });
+                    img.addEventListener('mouseleave', () => {
+                        document.body.removeChild(tooltip);
+                    });
+
+                    skillItem.appendChild(img);
+                    passiveSkillRow.appendChild(skillItem);
+                }
+
+                column.appendChild(passiveSkillRow);
+            }
+        }
+
+      // Class names
+      function getSkillTreeCombination() {
+          // Get selected values from the dropdowns
+          const tree1 = document.getElementById('tree1').value;
+          const tree2 = document.getElementById('tree2').value;
+          const tree3 = document.getElementById('tree3').value;
+
+       // Define the mapping of skill trees to combinations
+          const combinationMap = {
+            'Battlerage': {
+                'Defense': {
+                  'Occultism': 'Doomlord',
+                  'Sorcery' : 'Crusader',
+                  'Songcraft' : 'Dawncaller',
+                  'Witchcraft': 'Hexblade',
+                  'Auramancy' : 'Abolisher',
+                  'Archery' : 'Liberator',
+                  'Shadowplay' : 'Blighter',
+                  'Vitalism' : 'Paladin'
+                },
+                'Occultism': {
+                  'Sorcery' : 'Ravager',
+                  'Songcraft' : 'Lorebreaker',
+                  'Witchcraft': 'Hordebreaker',
+                  'Auramancy' : 'Bloodreaver',
+                  'Archery' : 'Dreadbow',
+                  'Shadowplay' : 'Executioner',
+                  'Vitalism' : 'Blackguard'
+                },
+                'Sorcery': {
+                  'Songcraft' : 'Spellsword',
+                  'Witchcraft': 'Harbinger',
+                  'Auramancy' : 'Enforcer',
+                  'Archery' : 'Destroyer',
+                  'Shadowplay' : 'Hellweaver',
+                  'Vitalism' : 'Fleshshaper'
+                },
+                'Songcraft': {
+                  'Witchcraft': 'Dirgeweaver',
+                  'Auramancy' : 'Herald',
+                  'Archery' : 'Bloodskald',
+                  'Shadowplay' : 'Blade Dancer',
+                  'Vitalism' : 'Bloodthrall'
+                },
+                'Witchcraft': {
+                  'Auramancy' : 'Hex Warden',
+                  'Archery' : 'Dreadhunter',
+                  'Shadowplay' : 'Shadowblade',
+                  'Vitalism' : 'Shaman'
+                },
+                'Auramancy': {
+                  'Archery' : 'Bonestalker',
+                  'Shadowplay' : 'Darkrunner',
+                  'Vitalism' : 'Argent'
+                },
+                'Archery': {
+                  'Shadowplay' : 'Outrider',
+                  'Vitalism' : 'Warpriest'
+                },
+                'Shadowplay': {
+                  'Vitalism' : 'Inquisitor'
+                },
+                  // Add more combinations as needed
+              },
+              // Add more skill trees as needed
+            'Defense': {
+              'Occultism' : {
+                'Sorcery' : 'Battlemage',
+                'Songcraft' : 'Dark Aegis',
+                'Witchcraft': 'Defiler',
+                'Auramancy' : 'Skullknight',
+                'Archery' : 'Dreadstone',
+                'Shadowplay' : 'Dreadnaught',
+                'Vitalism' : 'Justicar'
+              },
+              'Sorcery': {
+                'Songcraft' : 'Earthsinger',
+                'Witchcraft': 'Cabalist',
+                'Auramancy' : 'Thaumaturge',
+                'Archery' : 'Farslayer',
+                'Shadowplay' : 'Swiftstone',
+                'Vitalism' : 'Scion'
+              },
+              'Songcraft': {
+                'Witchcraft' : 'Poxbane',
+                'Auramancy' : 'Tomb Warden',
+                'Archery' : 'Honorguard',
+                'Shadowplay' : 'Nightbearer',
+                'Vitalism' : 'Caretaker'
+              },
+              'Witchcraft' : {
+                'Auramancy' : 'Dreambreaker',
+                'Archery' : 'Archon',
+                'Shadowplay' : 'Shadowknight',
+                'Vitalism' : 'Shadowbane'
+              },
+              'Auramancy' : {
+                'Archery' : 'Bastion',
+                'Shadowplay' : 'Nightblade',
+                'Vitalism' : 'Templar'
+              },
+              'Archery' : {
+                'Shadowplay' : 'Stone Arrow',
+                'Vitalism' : 'Druid'
+              },
+              'Shadowplay' : {
+                'Vitalism' : 'Death Warden'
+              },
+            },
+            'Occultism': {
+              'Sorcery': {
+                'Songcraft' : 'Requiem',
+                'Witchcraft': 'Demonologist',
+                'Auramancy' : 'Revenant',
+                'Archery' : 'Spellbow',
+                'Shadowplay' : 'Reaper',
+                'Vitalism' : 'Cultist'
+              },
+              'Songcraft': {
+                'Witchcraft' : 'Tombcaller',
+                'Auramancy' : 'Phantasm',
+                'Archery' : 'Gravesinger',
+                'Shadowplay' : 'Nocturne',
+                'Vitalism' : 'Sorrowsong'
+              },
+              'Witchcraft' : {
+                'Auramancy' : 'Nightcloak',
+                'Archery' : 'Shadestriker',
+                'Shadowplay' : 'Shroudmaster',
+                'Vitalism' : 'Necromancer'
+              },
+              'Auramancy' : {
+                'Archery' : 'Astral Ranger',
+                'Shadowplay' : 'Planeshifter',
+                'Vitalism' : 'Edgewalker'
+              },
+              'Archery' : {
+                'Shadowplay' : 'Shadehunter',
+                'Vitalism' : 'Blood Arrow'
+              },
+              'Shadowplay' : {
+                'Vitalism' : 'Doombringer'
+              },
+            },            
+            'Sorcery': {
+              'Songcraft': {
+                'Witchcraft' : 'Lamentor',
+                'Auramancy' : 'Spellsong',
+                'Archery' : 'Evoker',
+                'Shadowplay' : 'Spellsinger',
+                'Vitalism' : 'Gypsy'
+              },
+              'Witchcraft' : {
+                'Auramancy' : 'Arcanist',
+                'Archery' : 'Stormcaster',
+                'Shadowplay' : 'Daggerspell',
+                'Vitalism' : 'Shaman'
+              },
+              'Auramancy' : {
+                'Archery' : 'Stormchaser',
+                'Shadowplay' : 'Enigmatist',
+                'Vitalism' : 'Boneweaver'
+              },
+              'Archery' : {
+                'Shadowplay' : 'Infiltrator',
+                'Vitalism' : 'Naturalist'
+              },
+              'Shadowplay' : {
+                'Vitalism' : 'Animist'
+              },
+            },            
+            'Songcraft': {
+              'Witchcraft' : {
+                'Auramancy' : 'Enchantrix',
+                'Archery' : 'Hex Ranger',
+                'Shadowplay' : 'Nightwitch',
+                'Vitalism' : 'Athame'
+              },
+              'Auramancy' : {
+                'Archery' : 'Howler',
+                'Shadowplay' : 'Exorcist',
+                'Vitalism' : 'Cleric'
+              },
+              'Archery' : {
+                'Shadowplay' : 'Ebonsong',
+                'Vitalism' : 'Soulsong'
+              },
+              'Shadowplay' : {
+                'Vitalism' : 'Confessor'
+              },
+            },
+            'Witchcraft': {
+              'Auramancy' : {
+                'Archery' : 'Arcane Hunter',
+                'Shadowplay' : 'Eidolon',
+                'Vitalism' : 'Hierophant'
+              },
+              'Archery' : {
+                'Shadowplay' : 'Trickster',
+                'Vitalism' : 'Soulbow'
+              },
+              'Shadowplay' : {
+                'Vitalism' : 'Assassin'
+              },
+            },
+            'Auramancy': {
+              'Archery' : {
+                'Shadowplay' : 'Primeval',
+                'Vitalism' : 'Oracle'
+              },
+              'Shadowplay' : {
+                'Vitalism' : 'Soothsayer'
+              },
+            },
+            'Archery': {
+              'Shadowplay' : {
+                'Vitalism' : 'Ranger'
+              },
+            },
+          };
+
+          // Check all possible orders of the selected skill trees
+          const orders = [
+              [tree1, tree2, tree3],
+              [tree1, tree3, tree2],
+              [tree2, tree1, tree3],
+              [tree2, tree3, tree1],
+              [tree3, tree1, tree2],
+              [tree3, tree2, tree1]
+          ];
+
+          for (const order of orders) {
+              const combination = order.reduce((map, tree) => map && map[tree], combinationMap);
+              if (combination) {
+                  return combination;
+              }
+          }
+
+          return '[Invalid Class]';
+      }
+      
+        // Function to activate passive skills based on the number of selected skills
+        function activatePassiveSkills(treeId, skillsContainerId) {
+            const selectedSkills = document.querySelectorAll(`#${skillsContainerId} .skillImage.selected`);
+            const passiveSkills = document.querySelectorAll(`#${skillsContainerId} .skillImagePassive`);
+
+            // Calculate the number of selected skills for the tree
+            const selectedCount = selectedSkills.length;
+
+            // Activate passive skills based on the selected count
+            for (let i = 0; i < passiveSkills.length; i++) {
+                const passiveSkill = passiveSkills[i];
+                if (i < selectedCount - 2) {
+                    passiveSkill.classList.add('active');
+                } else {
+                    passiveSkill.classList.remove('active');
+                }
+            }
+        }
+
+        function addSkillNumbers(treeId, skillsContainerId, targetNumbers) {
+            const skillItems = document.querySelectorAll(`#${skillsContainerId} .skillItem`);
+
+            const indexMapping = [3, 4, 6]; // Map indices 4, 8, 12 to numbers 3, 4, 6
+
+            skillItems.forEach(skillItem => {
+                // Remove existing number overlays
+                const existingNumberOverlay = skillItem.querySelector('.numberOverlay');
+                if (existingNumberOverlay) {
+                    skillItem.removeChild(existingNumberOverlay);
+                }
+
+                // Add number overlay for specified skills
+                const index = Array.from(skillItem.parentNode.children).indexOf(skillItem) + 1;
+                const displayNumberIndex = targetNumbers.indexOf(index);
+
+                if (displayNumberIndex !== -1) {
+                    const displayNumber = indexMapping[displayNumberIndex];
+
+                    const numberOverlay = document.createElement('div');
+                    numberOverlay.classList.add('numberOverlay');
+                    numberOverlay.textContent = displayNumber;
+                    skillItem.appendChild(numberOverlay);
+
+                    // Get the associated tree count element
+                    const treeCountElement = document.getElementById(`${treeId}Count`);
+
+                    // Check if the tree count is equal or higher than the specified number
+                    const isCountEqualOrHigher = Number(treeCountElement.textContent.split('/')[0]) >= displayNumber;
+                    numberOverlay.style.display = isCountEqualOrHigher ? 'none' : 'block';
+
+                    // Enable or disable onclick listener based on numberOverlay visibility
+                    const skillImage = skillItem.querySelector('.skillImage');
+
+                    // Check if the skillImage element exists before setting onclick
+                    if (skillImage) {
+                        const isCountEqualOrHigherForListener = Number(treeCountElement.textContent.split('/')[0]) >= displayNumber + 1;
+                        skillImage.onclick = isCountEqualOrHigherForListener ? null : toggleSkillSelection;
+
+                        // If the skill is already selected and the overlay is re-enabled, deselect the skill
+                        if (skillImage.classList.contains('selected') && !isCountEqualOrHigherForListener) {
+                            toggleSkillSelection.apply(skillImage); // Manually trigger the toggle to deselect
+                        }
+                    }
+                }
+            });
+        }
+
+        function addPassiveNumbers(treeId, passivesContainerId, targetNumbers) {
+            const passiveItems = document.querySelectorAll(`#${passivesContainerId} .passiveItem`);
+            const indexMapping = [3, 4, 5, 6, 7, 8]; // Map indices 1-6 to numbers 3-8
+
+            passiveItems.forEach(passiveItem => {
+                // Remove existing number overlays
+                const existingNumberOverlay = passiveItem.querySelector('.numberOverlay');
+                if (existingNumberOverlay) {
+                    passiveItem.removeChild(existingNumberOverlay);
+                }
+
+                // Add number overlay for specified passives
+                const index = Array.from(passiveItem.parentNode.children).indexOf(passiveItem) + 1;
+                const displayNumber = indexMapping[index - 1];
+
+                const numberOverlay = document.createElement('div');
+                numberOverlay.classList.add('numberOverlay');
+                numberOverlay.textContent = displayNumber;
+                passiveItem.appendChild(numberOverlay);
+
+                // Get the associated tree count element
+                const treeCountElement = document.getElementById(`${treeId}Count`);
+
+                // Check if the tree count is equal or higher than the specified number
+                const isCountEqualOrHigher = Number(treeCountElement.textContent.split('/')[0]) >= displayNumber;
+                numberOverlay.style.display = isCountEqualOrHigher ? 'none' : 'block';
+
+                // Enable or disable onclick listener based on numberOverlay visibility
+                const passiveImage = passiveItem.querySelector('.skillImagePassive');
+
+                // Check if the passiveImage element exists before setting onclick
+                if (passiveImage) {
+                    const isCountEqualOrHigherForListener = Number(treeCountElement.textContent.split('/')[0]) >= displayNumber + 1;
+                    passiveImage.onclick = isCountEqualOrHigherForListener ? null : toggleSkillSelection;
+                }
+            });
+        }
+
+
+
+
+
+
+        // Function to update the total selected skills count and individual tree skill counts
+        function updateSelectedCount() {
+            const selectedCount = document.getElementById('selectedCount');
+            const selectedSkills = document.querySelectorAll('.skillImage.selected');
+
+            // Update the total selected skills count
+            selectedCount.textContent = selectedSkills.length;
+
+            // Update individual tree skill counts
+            updateTreeCount('tree1', 'tree1Skills', 'tree1Count');
+            updateTreeCount('tree2', 'tree2Skills', 'tree2Count');
+            updateTreeCount('tree3', 'tree3Skills', 'tree3Count');
+
+            // Add numbers over specified skills
+            addSkillNumbers('tree1', 'tree1Skills', [4, 8, 12]);
+            addSkillNumbers('tree2', 'tree2Skills', [4, 8, 12]);
+            addSkillNumbers('tree3', 'tree3Skills', [4, 8, 12]);
+            // Add numbers over specified skills
+            addPassiveNumbers('tree1', 'tree1Skills', [1, 2, 3, 4, 5, 6]);
+            addPassiveNumbers('tree2', 'tree2Skills', [1, 2, 3, 4, 5, 6]);
+            addPassiveNumbers('tree3', 'tree3Skills', [1, 2, 3, 4, 5, 6]);
+
+            activatePassiveSkills('tree1', 'tree1Skills');
+            activatePassiveSkills('tree2', 'tree2Skills');
+            activatePassiveSkills('tree3', 'tree3Skills');
+
+          // Example usage
+          const combination = getSkillTreeCombination();
+          document.getElementById('classChoice').innerText = combination;
+        }
+
+        // Function to update the skill count for a specific tree
+        function updateTreeCount(treeId, skillsContainerId, countElementId) {
+            const selectedSkills = document.querySelectorAll(`#${skillsContainerId} .skillImage.selected`);
+            const countElement = document.getElementById(countElementId);
+
+            // Update the skill count for the tree
+            countElement.textContent = `${selectedSkills.length}/12`; // Assuming a maximum of 12 skills per tree
+        }
+
+        // Function to toggle the selected class when an image is clicked
+        function toggleSkillSelection() {
+            const selectedSkills = document.querySelectorAll('.skillImage.selected');
+
+            // Check if the skill is already selected
+            const isSelected = this.classList.contains('selected');
+
+            // Check if selecting this skill would exceed the limit
+            if (isSelected || selectedSkills.length < maxSkills) {
+                this.classList.toggle('selected');
+                updateSelectedCount();
+
+            }
+        }
+
+
+    </script>
+</body>
+</html>
