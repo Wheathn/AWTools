@@ -1648,6 +1648,7 @@
         }
 
         function calcTimers() {
+            // Update GS timers
             for (const location in storedLocationData) {
                 if (storedLocationData.hasOwnProperty(location)) {
                     const timerId = `${location}_timer`;
@@ -1659,16 +1660,19 @@
                     }
                 }
             }
+            // Update the island timer
+            const islandTimerId = 'Island_timer';
+            if (data && data.islandTime !== null) {
+                calculateRemainingTime({ time: data.islandTime }, islandTimerId);
+            } else {
+                document.getElementById(islandTimerId).textContent = 'Respawned';
+            }
         }
 
         // Function to update UI or perform other actions with loaded data
         function updateUI(data) {
-            try {
                 // Perform actions to update the UI with loaded data
                 calcTimers();
-                if (data) {
-                    console.log("Data loaded:", data);
-                }
 
             // Restart DGS and Kraken counts
             if (gsCount >= 24) {
@@ -1681,17 +1685,7 @@
             document.getElementById('Krakentext').textContent = `Packs For Kraken: ${packs}/500`;
             document.getElementById('DGStext').textContent = `Ghostships For DGS: ${gsCount}/24`;
 
-            // Update the island timer
-            const islandTimerId = 'Island_timer';
-            if (data && data.islandTime !== null) {
-                calculateRemainingTime({ time: data.islandTime }, islandTimerId);
-            } else {
-                document.getElementById(islandTimerId).textContent = 'Respawned';
-                }
 
-            } catch (error) {
-                console.error("An error occurred in updateUI:", error);
-            }
         }
 
 
