@@ -1663,11 +1663,12 @@
 
         // Function to update UI or perform other actions with loaded data
         function updateUI(data) {
-            // Perform actions to update the UI with loaded data
-            calcTimers();
-            if (data) {
-                console.log("Data loaded:", data);
-            }
+            try {
+                // Perform actions to update the UI with loaded data
+                calcTimers();
+                if (data) {
+                    console.log("Data loaded:", data);
+                }
 
             // Restart DGS and Kraken counts
             if (gsCount >= 24) {
@@ -1686,6 +1687,10 @@
                 calculateRemainingTime({ time: data.islandTime }, islandTimerId);
             } else {
                 document.getElementById(islandTimerId).textContent = 'Respawned';
+                }
+
+            } catch (error) {
+                console.error("An error occurred in updateUI:", error);
             }
         }
 
@@ -1694,13 +1699,16 @@
         // Function to load data and logs from Firebase
         async function loadData() {
 
-            // Check if the user is a member of any guild and a guild is selected
-            if (!userIsMemberOfGuild() || !guildName) {
-                alert("Please join or create a network before using this feature.");
-                return;
-            }
 
             try {
+
+                // Check if the user is a member of any guild and a guild is selected
+                if (!userIsMemberOfGuild() || !guildName) {
+                    alert("Please join or create a network before using this feature.");
+                    return;
+                }
+
+
                 let dataRef = database.ref(guildName + '/data'); // Use guildName in the path
 
                 // Load data
