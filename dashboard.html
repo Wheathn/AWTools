@@ -1665,7 +1665,9 @@
         function updateUI(data) {
             // Perform actions to update the UI with loaded data
             calcTimers();
-            console.log("Data loaded:", data);
+            if (data) {
+                console.log("Data loaded:", data);
+            }
 
             // Restart DGS and Kraken counts
             if (gsCount >= 24) {
