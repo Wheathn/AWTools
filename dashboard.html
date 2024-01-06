@@ -1663,10 +1663,13 @@
             const islandTimerId = 'Island_timer';
             const currentDate = new Date();
             const currentTime = currentDate.getTime();
+            console.log(`Currently island is: ${islandTime} and the current time is: ${currentTime}`);
             if (islandTime > currentTime) {
                 calculateRemainingTime(islandTime, islandTimerId);
+                console.log("updating island time.");
             } else {
                 document.getElementById(islandTimerId).textContent = 'Respawned';
+                console.log("island has respawned.");
             }
         }
 
