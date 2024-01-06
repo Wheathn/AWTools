@@ -1662,7 +1662,7 @@
             }
             // Update the island timer
             const islandTimerId = 'Island_timer';
-            if (islandTime !== null) {
+            if (islandTime) {
                 calculateRemainingTime(islandTime, islandTimerId);
             } else {
                 document.getElementById(islandTimerId).textContent = 'Respawned';
