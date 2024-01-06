@@ -1628,7 +1628,9 @@
         function calculateRemainingTime(locationData, timerId) {
             const locationTime = locationData.time;
             const currentTime = new Date();
-
+            if (timerId == 'Island_timer') {
+                locationTime = locationData;
+            }
             if (!isNaN(locationTime)) {
                 const timeDifference = locationTime - currentTime;
 
@@ -1639,11 +1641,7 @@
                     const remainingMinutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
                     document.getElementById(timerId).textContent = `${remainingHours}h ${remainingMinutes}m`;
                 }
-            } else if (locationData.time == null && locationData.status === "up") {
-                document.getElementById(timerId).textContent = "Respawned";
-            } else if (locationData.time == null && locationData.status === "down") {
-                document.getElementById(timerId).textContent = "Down";
-            }
+            } 
         }
 
         function calcTimers() {
@@ -1661,17 +1659,7 @@
             }
             // Update the island timer
             const islandTimerId = 'Island_timer';
-            const currentDate = new Date();
-            const currentTime = currentDate.getTime();
-            console.log(`Currently island is: ${islandTime} and the current time is: ${currentTime}`);
-            if (islandTime > currentTime) {
-                calculateRemainingTime(islandTime, islandTimerId);
-                console.log("updating island time.");
-            } else {
-                document.getElementById(islandTimerId).textContent = 'Respawned';
-                console.log("island has respawned.");
-            }
-        }
+            calculateRemainingTime(islandTime, islandTimerId);
 
         // Function to update UI or perform other actions with loaded data
         function updateUI() {
