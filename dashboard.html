@@ -1626,7 +1626,7 @@
 
         // Helper function to calculate remaining hours and minutes
         function calculateRemainingTime(locationData, timerId) {
-            const locationTime = locationData.time;
+            let locationTime = locationData.time;
             const currentTime = new Date();
             if (timerId == 'Island_timer') {
                 locationTime = locationData;
