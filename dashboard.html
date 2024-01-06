@@ -1578,7 +1578,6 @@
             await loadData();
             // +4 hours
             const currentTime = new Date();
-            const timeStampCode = currentTime.getTime();
             currentTime.setHours(currentTime.getHours() + 4);
             // Update the islandTime and save it to the database
             if (currentTime) {
@@ -1662,7 +1661,9 @@
             }
             // Update the island timer
             const islandTimerId = 'Island_timer';
-            if (islandTime) {
+            const currentDate = new Date();
+            const currentTime = currentDate.getTime();
+            if (islandTime > currentTime) {
                 calculateRemainingTime(islandTime, islandTimerId);
             } else {
                 document.getElementById(islandTimerId).textContent = 'Respawned';
