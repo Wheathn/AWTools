@@ -1662,15 +1662,15 @@
             }
             // Update the island timer
             const islandTimerId = 'Island_timer';
-            if (data && data.islandTime !== null) {
-                calculateRemainingTime({ time: data.islandTime }, islandTimerId);
+            if (islandTime !== null) {
+                calculateRemainingTime(islandTime, islandTimerId);
             } else {
                 document.getElementById(islandTimerId).textContent = 'Respawned';
             }
         }
 
         // Function to update UI or perform other actions with loaded data
-        function updateUI(data) {
+        function updateUI() {
                 // Perform actions to update the UI with loaded data
                 calcTimers();
 
@@ -1752,7 +1752,7 @@
                 islandTime = data.islandTime;
 
                 // Update UI
-                updateUI(data);
+                updateUI();
             } catch (error) {
                 console.error("Error loading data:", error);
             }
@@ -1841,7 +1841,7 @@
                 console.log("Data updated and saved successfully.");
 
                 // Update UI with the latest data
-                updateUI(dataAfter);
+                updateUI();
 
                 // Push logs after updating data
                 await pushLogsToDatabase();
