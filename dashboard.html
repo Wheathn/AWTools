@@ -89,16 +89,16 @@
         .timer1 {
             position: absolute;
             width: 100px;
-            top: 498px;
-            left: 348px;
+            top: 495px;
+            left: 341px;
             z-index: 1; /* Place the timers on top of the large image */
         }
 
         .timer2 {
             position: absolute;
             width: 100px;
-            top: 444px;
-            left: 112px;
+            top: 442px;
+            left: 102px;
             z-index: 1;
         }
 
@@ -113,8 +113,8 @@
         .timer4 {
             position: absolute;
             width: 100px;
-            top: 218px;
-            left: 313px;
+            top: 216px;
+            left: 308px;
             z-index: 1;
         }
 
@@ -122,23 +122,23 @@
             position: absolute;
             width: 100px;
             top: 478px;
-            left: 634px;
+            left: 628px;
             z-index: 1;
         }
 
         .timer6 {
             position: absolute;
             width: 100px;
-            top: 245px;
-            left: 622px;
+            top: 244px;
+            left: 620px;
             z-index: 1;
         }
 
         .timer7 {
             position: absolute;
             width: 100px;
-            top: 280px;
-            left: 442px;
+            top: 276px;
+            left: 438px;
             z-index: 1;
         }
 
@@ -1659,7 +1659,9 @@
             }
             // Update the island timer
             const islandTimerId = 'Island_timer';
-            calculateRemainingTime(islandTime, islandTimerId);
+            if (islandTime > 0) {
+                calculateRemainingTime(islandTime, islandTimerId);
+            }
         }
 
         // Function to update UI or perform other actions with loaded data
